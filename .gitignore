@@ -1,2 +1,3 @@
-.synctex.gz
+*.synctex.gz
 /literature
+/.aux

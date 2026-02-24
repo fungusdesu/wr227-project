@@ -1,0 +1,72 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+%\urlstyle{rm}
+%
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{biblatex}
+
+% \addbibresource{sc203.bib}
+
+\begin{document}
+%
+% \title{A Linguistic Comparison Between Human and AI Writing Across Different Domains Using Multi-Metric Analysis}
+\title{Decision Tree-based Approach in Allocating Assistance Based on Students' Examination Results}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Thien-Lac Quach\inst{1,2}\orcidID{0009-0004-6310-5149}\and
+Ton-Minh-Ky Tran\inst{1,2}\orcidID{0009-0006-5027-2516}\and
+Viet-Tham Huynh\inst{1,2}\orcidID{0000-0002-8537-1331}}
+%
+\authorrunning{F. Author et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Faculty of Information Technology, University of Science, Ho Chi Minh City, Vietnam \and
+Vietnam National University, Ho Chi Minh City, Vietnam
+\email{\{24125092,24125102\}@apcs.fitus.edu.vn}\\hvlab@selab.hcmus.edu.vn}
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+The rapid advancement of Large Language Model (LLMs) has rendered the differentiation between human-written and AI-generated text increasingly challenging. In this paper, we propose a zero-shot, black-box, multi-metric analysis approach to distinguish these two text types by their linguistic features. We introduce six core metrics—lexical diversity, nominalization density, modal and epistemic rate, clause complexity, passive voice ratio, and sentence-to-sentence cosine similarity—to capture the nuanced differences in writing styles. Utilizing a comprehensive dataset of text samples from both human authors and various LLMs, we designed a pipeline to compute these metrics and analyze their distributions. Our findings reveal distinct linguistic fingerprints that can effectively differentiate human writing from AI-generated content Notably, human texts often exhibit significantly higher lexical diversity and passive voice frequency, while AI-generated texts prefer nominalizations and display higher semantic coherence. Moreover, humans tend to leverage specific, concrete vocabulary, whereas AI outputs are characterized by abstract and generalized terms. From these insights, we discuss the potential applications of our findings in developing a linguistic framework leveraging the strengths of both human and AI writing styles, particularly in educational contexts to assist English as a Foreign Language (EFL) learners. Our study lays the groundwork for future research in both detection methodologies and language learning applications.
+
+\keywords{AI text detection \and Multi-metric analysis \and Linguistic features}
+\end{abstract}
+%
+%
+%
+
+%
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+% \bibliographystyle{splncs04}
+% \bibliography{mybibliography}
+%
+\printbibliography
+\end{document}
