@@ -57,26 +57,19 @@ The rapid advancement of Large Language Model (LLMs) has rendered the differenti
 %
 %
 %
-\begin{minipage}   {0.5\textwidth}
-\section*{Introduction}
+\section{Introduction}
 Higher education institutions (HEIs) have been of increasing importance in recent years, given their role in developing a more sustainable society. Therefore, preventing dropout and ensuring students' receive proper support is crucial. In this paper, we propose an approach based on decision tree (DT) using students' examination results to allocate assistance effectively.
 
 Using multiple DT algorithms, we analyze a given dataset of students' examination results to identify patterns and factors that contribute to academic success or failure in order to provide an appropriate level of academic support. The DT-based approach allows us to classify students into different categories based on their performance, enabling targeted interventions and resource allocation. By identifying at-risk students early on, HEIs can implement strategies to improve retention rates and enhance the overall educational experience. The results of this study can inform policy decisions and contribute to the development of more effective support systems for students in HEIs.
 
 Section II of this paper will attempt to explore key technical aspects of this problem, including different types of DT algorithms used, evaluation metrics, and techniques for handling imbalanced datasets. Section III will outline related work in the field of educational data mining and DT-based prediction models. Section IV will present the methodology and experimental setup, including data preprocessing, feature selection, and model training. Finally, Section V will discuss the results and implications of our findings, as well as potential future research directions in this area.
 
-\section*{Background}
+\section{Background}
 
 
-\end{minipage}
-%
-% ---- Bibliography ----
-%
-% BibTeX users should specify bibliography style 'splncs04'.
-% References will then be sorted and formatted in the correct style.
-%
-% \bibliographystyle{splncs04}
-% \bibliography{mybibliography}
-%
+\section{Related Work}
+In order to determine the scope of our work, we conducted a literature review on decision trees and classification problems. Pandey 2013 outlined a few attributes to take note of when training a decision tree, as well as a variety of decision trees models suitable for construction. Their research found that models of decision trees called J48 and C 4.5 are suitable for a prediction of grades of students. This is further accentuated by Bujang et al. 2021, which outlined a multi-class decision tree-based model (more specifically J48).
+
+Most importantly, Ramirez 2023 delineated the procedure to train a decision tree for a classification for transport systems. We thus utilize their research as our baseline for our methodologies. Kuzilek 2017 provided the dataset regarding academic performances, which we shall use to train the policy set of our decision tree.
 \printbibliography
 \end{document}
