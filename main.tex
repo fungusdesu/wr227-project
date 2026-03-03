@@ -18,19 +18,19 @@
 %
 % If you use the hyperref package, please uncomment the following two lines
 % to display URLs in blue roman font according to Springer's eBook style:
-%\usepackage{color}
-%\renewcommand\UrlFont{\color{blue}\rmfamily}
-%\urlstyle{rm}
+% \urlstyle{rm}
 %
 \usepackage[english]{babel}
 \usepackage{hyperref}
-\usepackage{biblatex}
+\usepackage[style=lncs, backend=biber, natbib=true]{biblatex}
+\usepackage{lipsum}
+\usepackage{color}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
 
-% \addbibresource{sc203.bib}
+\addbibresource{wr227.bib}
 
 \begin{document}
 %
-% \title{A Linguistic Comparison Between Human and AI Writing Across Different Domains Using Multi-Metric Analysis}
 \title{Decision Tree-based Approach in Allocating Assistance Based on Students' Examination Results}
 %
 %\titlerunning{Abbreviated paper title}
@@ -51,42 +51,23 @@ Vietnam National University, Ho Chi Minh City, Vietnam
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The rapid advancement of Large Language Model (LLMs) has rendered the differentiation between human-written and AI-generated text increasingly challenging. In this paper, we propose a zero-shot, black-box, multi-metric analysis approach to distinguish these two text types by their linguistic features. We introduce six core metrics—lexical diversity, nominalization density, modal and epistemic rate, clause complexity, passive voice ratio, and sentence-to-sentence cosine similarity—to capture the nuanced differences in writing styles. Utilizing a comprehensive dataset of text samples from both human authors and various LLMs, we designed a pipeline to compute these metrics and analyze their distributions. Our findings reveal distinct linguistic fingerprints that can effectively differentiate human writing from AI-generated content Notably, human texts often exhibit significantly higher lexical diversity and passive voice frequency, while AI-generated texts prefer nominalizations and display higher semantic coherence. Moreover, humans tend to leverage specific, concrete vocabulary, whereas AI outputs are characterized by abstract and generalized terms. From these insights, we discuss the potential applications of our findings in developing a linguistic framework leveraging the strengths of both human and AI writing styles, particularly in educational contexts to assist English as a Foreign Language (EFL) learners. Our study lays the groundwork for future research in both detection methodologies and language learning applications.
+\lipsum[1]
 
-\keywords{AI text detection \and Multi-metric analysis \and Linguistic features}
+\keywords{}
 \end{abstract}
 %
 %
 %
 \newpage
-\begin{multicols}   {2}
-\section*{Introduction}
-Higher education institutions (HEIs) have been of increasing importance in recent years, given their role in developing a more sustainable society. Therefore, preventing dropout and ensuring students' receive proper support is crucial. In this paper, we propose an approach based on decision tree (DT) using students' examination results to allocate assistance effectively.
+\input{Introduction.tex}
+\input{Background.tex}
+\input{RelatedWorks.tex}
 
-Using multiple DT algorithms, we analyze a given dataset of students' examination results to identify patterns and factors that contribute to academic success or failure in order to provide an appropriate level of academic support. The DT-based approach allows us to classify students into different categories based on their performance, enabling targeted interventions and resource allocation. By identifying at-risk students early on, HEIs can implement strategies to improve retention rates and enhance the overall educational experience. The results of this study can inform policy decisions and contribute to the development of more effective support systems for students in HEIs.
-
-Section II of this paper will attempt to explore key technical aspects of this problem, including different types of DT algorithms used, evaluation metrics, and techniques for handling imbalanced datasets. Section III will outline related work in the field of educational data mining and DT-based prediction models. Section IV and V will describe present the methodology and experimental setup, including data preprocessing, feature selection, and model training. Finally, Section VI will discuss the results and implications of our findings, as well as potential future research directions in this area.
-
-\section*{Background}
-Decision tree is a simple and representative model of machine learning. Decision trees operate according to the principle of "divide-and-conquer"; through a series of questions, hereafter referred to as features, they attempt to predict certain attributes, or labels, of the input data. Decision tree are often built greedily by prioritizing questions that obtain the greatest difference among the partitions of its input. Numerous papers have shown ensemble decision tree models, meaning those that leverage multiple parallel decision trees, namely Random Forest (RF) and Gradient Boosting (GBoost) (or its variant, Extreme Gradient Boosting (XGBoost)), to outperform the rest.
-
-
-Random forests, or RF, is an ensemble learning method that constructs multiple decision trees during training and outputs the mode of the classes (classification) or mean prediction (regression) of the individual trees. The algorithm synchronously generates multiple trees of a desired depth; randomness is introduced via feature selection for each tree's branches, as well as through the use of bootstrapped samples of the training data. This approach helps to reduce overfitting and improve generalization. RF is widely used for its robustness and ability to handle large datasets with high dimensionality.
-
-Gradient boosting, or GBoost, is another ensemble learning method that builds decision trees sequentially, where each tree attempts to correct the errors of the previous one. The algorithm optimizes a loss function by adding new trees that minimize the residuals of the predictions made by the existing ensemble. Extreme Gradient Boosting (XGBoost) is a popular variant of GBoost that incorporates regularization techniques to prevent overfitting and improve performance. Both GBoost and XGBoost are known for their high accuracy and efficiency in handling complex datasets.
-
-Another important aspect of decision tree-based models is the evaluation metrics used to assess their performance. Common metrics include accuracy, precision, recall, F1-score, and area under the receiver operating characteristic curve (AUC-ROC). These metrics provide insights into the model's ability to correctly classify instances, handle imbalanced datasets, and make informed decisions based on the predictions.
-
-Finally, techniques for handling imbalanced datasets aer crucial when working with DT-based models to avoid bias towards the majority class in the models. Here, we focus on Synthetic Minority Over-sampling Technique (SMOTE), specifically its variant ADASYN, which utilies a weighted distribution to determine the learning difficulty of minority class samples and generates synthetic data accordingly. This approach helps to balance the dataset and improve the performance of the decision tree models in predicting the minority class.
-\end{multicols}
 %
 % ---- Bibliography ----
 %
 % BibTeX users should specify bibliography style 'splncs04'.
 % References will then be sorted and formatted in the correct style.
-%
-% \bibliographystyle{splncs04}
-% \bibliography{mybibliography}
-%
+
 \printbibliography
 \end{document}
