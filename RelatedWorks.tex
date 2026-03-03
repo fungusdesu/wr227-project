@@ -1,14 +1,7 @@
 \section{Related Work}
-In order to determine the scope of our work, we utilize the systematic literature review framework devised by \cite{KeathleyHerring2016}. To this end, we divide this section into three subsections; namely data collection, models, and evaluation metrics.
-
 \subsection{Data aggregation}
-
-
-\subsection{Models}
+It stands to reason that gathering high-quality and representative data is often a difficult endeavour. \cite{Alias2024} delineated a framework where a list of hypothetically relevant features are enumerated and filtered via information gain. More specifically, the features that are taken into consideration include those relating to students' study hours, participation in extracurricular activities, hours of sleep, and mock exams practiced \cite{Suleiman2024}. Surveys for these features are deployed online as a questionaire via the platform Google Forms.
 
 
 \subsection{Performance metrics}
-
-% In order to determine the scope of our work, we conducted a literature review on decision trees and classification problems. Pandey 2013 outlined a few attributes to take note of when training a decision tree, as well as a variety of decision trees models suitable for construction. Their research found that models of decision trees called J48 and C 4.5 are suitable for a prediction of grades of students. This is further accentuated by Bujang et al. 2021, which outlined a multi-class decision tree-based model (more specifically J48).
-
-% Most importantly, Ramirez 2023 delineated the procedure to train a decision tree for a classification for transport systems. We thus utilize their research as our baseline for our methodologies. Kuzilek 2017 provided the dataset regarding academic performances, which we shall use to train the policy set of our decision tree.
+Common metrics to assess multimodal classification algorithm include accuracy, precision, recall, F1-score \cite{Alias2024,Zaky2023} and area under the receiver operating characteristic curve (AUC-ROC) \cite{Brzezinski2017,Yang2017}. These metrics provide insights into the model's ability to correctly classify instances, handle imbalanced datasets, and make informed decisions based on the predictions \cite{Brzezinski2017}. Techniques for handling imbalanced datasets are crucial when working with DT-based models to avoid bias towards the majority class in the models. Here, we focus on Synthetic Minority Over-sampling Technique (SMOTE), specifically its variant ADASYN, which utilies a weighted distribution to determine the learning difficulty of minority class samples and generates synthetic data accordingly \cite{Chawla2011,Elreedy2019}. This approach helps to balance the dataset and improve the performance of the decision tree models in predicting the minority class.
