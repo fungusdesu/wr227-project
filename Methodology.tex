@@ -6,11 +6,13 @@
 
 We utilize a traditional framework outlined in \cite{DiazRamirez2023}. The process is divided into two phases: the descriptive phase comprises demographics survey, data filtering and preprocessing; the predictive phase builds the model and feed the data into said model.
 
-\subsection{Data collection}
+\subsection{Descriptive phase}
 A survey is deployed that encompasses these features outlined in \cite{Suleiman2024}:
 \begin{center}
 	\bgroup
 	\def\arraystretch{1.5}
+	\captionof{table}{Survey features}
+	\label{tab:Table1}
 	\begin{tabular}{p{3cm}p{6cm}p{2cm}}
 		\toprule
 		\footnotesize \textbf{Name} & \footnotesize \textbf{Description} & \footnotesize \textbf{Label} \\
@@ -24,4 +26,6 @@ A survey is deployed that encompasses these features outlined in \cite{Suleiman2
 	\end{tabular}
 	\egroup
 \end{center}
-The survey is conducted on the population of various universities in Ho Chi Minh City.
+The survey is conducted on the population of various universities in Ho Chi Minh City. As delineated in \autoref{tab:Table1}, the survey consists of five questions; three of which is in the form of a five-level Likert-type scale (Feature 1, 2, 4), one of which is in the form of a Boolean (Feature 4), and one of which is in the form of a continuous variable (Feature 5). The dataset is divided into two subsets in the ratio 80:20, the former is used for training and the latter is used for testing.
+
+\subsection{Predictive phase}
