@@ -1,8 +1,23 @@
 \section{Background}
-Decision tree is a simple and representative model of machine learning. Decision trees operate according to the principle of ``divide-and-conquer''---through a series of questions (hereafter referred to as features), they attempt to predict certain attributes, or labels, of the input data. Decision tree are often built greedily by prioritizing questions that obtain the greatest difference among the partitions of its input. Numerous papers have shown ensemble decision tree models \cite{Delgado2014,Bujang2021,Dagim2025,DiazRamirez2023,Pandey2013,Zou2025}, namely Random Forest (RF) and Gradient Boosting---GBoost (or its variant, Extreme Gradient Boosting---XGBoost), to outperform the rest.
 
-Random forests, or RF, is an ensemble learning method that constructs multiple decision trees during training and outputs the mode of the classes (classification) or mean prediction (regression) of the individual trees. The algorithm synchronously generates multiple trees of a desired depth; randomness is introduced via feature selection for each tree's branches, as well as through the use of bootstrapped samples of the training data. This approach helps to reduce overfitting and improve generalization. RF is widely used for its robustness and ability to handle large datasets with high dimensionality.
+Prompting techniques presents a paradigm shift from traditional machine learning approaches, which typically require extensive feature engineering and model selection. Instead, prompting techniques leverage the inherent capabilities of LLMs to understand and generate human-like text based on the input provided. This allows for a more flexible and efficient way to extract insights from data without the need for complex model architectures or extensive training.. Below, we outline key prompting techiniques and terminologies relevant to our study:
 
-Gradient boosting, or GBoost, is another ensemble learning method that builds decision trees sequentially, where each tree attempts to correct the errors of the previous one. The algorithm optimizes a loss function by adding new trees that minimize the residuals of the predictions made by the existing ensemble. Extreme Gradient Boosting (XGBoost) is a popular variant of GBoost that incorporates regularization techniques to prevent overfitting and improve performance. Both GBoost and XGBoost are known for their high accuracy and efficiency in handling complex datasets.
+\subsection{In-context Learning}
 
-DCMs are often utilized for multimodal classification problems \cite{DiazRamirez2023,Baltas2001}. The decision tree model J48 is most suitable to construct a multi-class model \cite{Pandey2013,Bujang2021}. The procedure to train the tree is described in \cite{DiazRamirez2023}
+In-context learning (ICL) is the capability of LLMs to acquire new skills or knowledge directly from user-provided exemplars -- an example of input-output pairs -- or instructions, without the need for extensive training or fine-tuning. The model recognizes pattern in the input data rather than relying on pre-trained weights. Two main techniques for in-context learning are zero-shot and few-shot prompting. 
+
+\subsubsection {Zero-shot Prompting}
+
+Zero-shot prompting involves providing the model with a task description or instruction without any exemplars. Numerous variants of zero-shot prompting exist since its inception, including those that combine other concepts, such as chain-of-thought prompting, or those that simply modify the content of the prompt, such as role prompting or style prompting.
+
+\subsubsection {Few-shot Prompting}
+
+Few-shot prompting, on the other hand, involves providing the model with a few input-output pairs as examples to what the model should do. Few-shot prompting is generally harder to implement given design decisions regarding exemplars, such as the number or ordering of exemplars, or the choice of instructions. However, it has been shown to significantly improve the performance of LLMs on various tasks compared to zero-shot prompting.
+
+\subsection{Thought Generation}
+
+Thought generation is a prompting technique that encourages LLMs to generate intermediate reasoning steps or explanations before providing a final answer. This approach can help improve the model's performance on complex tasks by allowing it to break down the problem into smaller, more manageable parts. Chain-of-thought prompting is a specific type of thought generation that involves guiding the model through a series of logical steps to arrive at a solution. It is often used in conjuction with other prompting techniques, such as zero-shot or few-shot prompting, to further enhance the model's performance.
+
+\subsubsection{Chain-of-thought Prompting}
+
+In chain-of-thought (CoT) prompting, the LLMs is encourage to break down a complex problem into a series of intermediate reasoning steps and express them before arriving at a final answer. This technique has been shown to significantly improve the performance of LLMs on tasks that require multi-step reasoning, such as mathematical problem-solving or logical inference. By guiding the model through a structured thought process, CoT prompting can help it arrive at more accurate and coherent answers.

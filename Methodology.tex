@@ -4,29 +4,32 @@
 	\includegraphics[width=0.5\textwidth]{diagram.jpg}
 \end{figure}
 
-We utilize a traditional framework outlined in \cite{DiazRamirez2023}. The process is divided into two phases: the descriptive phase comprises demographics survey, data filtering and preprocessing; the predictive phase builds the model and feed the data into said model.
+We utilize a traditional framework outlined in \cite{DiazRamirez2023}. The process is divided into two phases: the descriptive phase comprises data filtering and preprocessing; the predictive phase builds the model and feed the data into said model.
 
 \subsection{Descriptive phase}
-A survey is deployed that encompasses these features outlined in \cite{Suleiman2024}:
-\begin{center}
-	\bgroup
-	\def\arraystretch{1.5}
-	\captionof{table}{Survey features}
-	\label{tab:Table1}
-	\begin{tabular}{p{3cm}p{6cm}p{2cm}}
-		\toprule
-		\footnotesize \textbf{Name} & \footnotesize \textbf{Description} & \footnotesize \textbf{Label} \\
-		\midrule
-		\footnotesize Study hours & \footnotesize Time spent revising study materials & \footnotesize Feature 1 \\
-		\footnotesize Practice hours & \footnotesize Time spent practicing with exercises and mock exams & \footnotesize Feature 2 \\
-		\footnotesize Extracurricular activities & \footnotesize Whether the student participate in extracurricular activities & \footnotesize Feature 3 \\
-		\footnotesize Sleep hours & \footnotesize Time spent sleeping & \footnotesize Feature 4 \\
-		\footnotesize Exam score & \footnotesize Resulting score of the exam on the scale from 1---10 & \footnotesize Feature 5 \\
-		\bottomrule
-	\end{tabular}
-	\egroup
-\end{center}
-The survey is conducted on the population of various universities in Ho Chi Minh City. As delineated in \autoref{tab:Table1}, the survey consists of five questions; three of which is in the form of a five-level Likert-type scale (Feature 1, 2, 4), one of which is in the form of a Boolean (Feature 4), and one of which is in the form of a continuous variable (Feature 5). The dataset is divided into two subsets in the ratio 80:20, the former is used for training and the latter is used for testing.
+
+A dataset of students' performance is described in cite{}. This study utilized the Open University Learning Analytics Dataset (OULAD), a comprehensive, open-source dataset designed to support research in learning analytics and student behavior. The dataset comprises records from 32,593 students enrolled across 22 module presentations (courses) at the Open University, a large distance-learning institution in the United Kingdom. The data represents a subset of the university's student population spanning the 2013 and 2014 academic years.
+
+A unique feature of the OULAD is its integration of demographic information, academic performance, and detailed behavioral logs. The data is broadly categorized into three domains:
+\begin{itemize}
+
+   \item Demographic Data: Captures student characteristics, including gender, age band, geographic location, highest education level attained, and disability status. It also includes the Index of Multiple Deprivation (IMD) band, which serves as a metric for socioeconomic resources.
+
+   \item Assessment Data: Contains records of student academic outcomes, including scores for Tutor Marked Assessments (TMA), Computer Marked Assessments (CMA), and Final Exams. This section also tracks the final submission dates and the respective weighting of each assessment.
+
+   \item Interaction (Clickstream) Data: Records students' digital footprint within the university's Virtual Learning Environment (VLE). This is represented by daily aggregated summaries of student clicks, amounting to over 10.6 million logged entries that detail how and when students interacted with course materials.
+   
+
+\end{itemize}
+
+From this dataset, we utilize the MTSS framework to translate the academic performance of students into the level of support they require. The MTSS framework categorizes students into three levels of support: Tier 1 (universal support), Tier 2 (targeted support), and Tier 3 (intensive support). We define the target variable for our predictive model based on the students' performance in their assessments, categorizing them into these three tiers accordingly. For instance, students who consistently perform well across all assessments may be classified as Tier 1, while those who show signs of struggle may be classified as Tier 2 or Tier 3, depending on the severity of their performance issues. This categorization allows us to tailor our predictive model to identify students who may require different levels of support, enabling more effective interventions and resource allocation within the educational institution.
 
 \subsection{Predictive phase}
-As outlined in the literature review, various decision tree-based model are analyzed (decision tree, random forest, gradient boosting, etc.). In order for a more balanced classification, SMOTE is also applied.
+
+We first divide the dataset into training and testing sets, ensuring that the distribution of classes is maintained. We then apply various data preprocessing techniques, such as handling missing values, encoding categorical variables, and normalizing numerical features. Feature selection is performed to identify the most relevant attributes for predicting student performance.
+
+Next, we determine appropriate prompting techniques for classifying students based on their performance. We will compare different prompting strategies, such as zero-shot, few-shot, and chain-of-thought prompting, to evaluate their effectiveness in guiding the model's predictions. For each prompting technique, we design the prompts and exemplars, if required, to provide the model with the necessary context and information for accurate classification.
+
+After this, we provide the LLMs with the training set and instruct them to classify the students based on their examination results using the designed prompts. The models will be trained to predict the performance categories of students, such as "at-risk," "average," and "high-performing," based on their examination results and other relevant features. We will monitor the training process and adjust the prompts as needed to optimize the model's performance. The testing set is then used to evaluate the model's performance and generalization capabilities.
+
+Finally, we will evaluate the performance of the trained models using appropriate metrics, such as accuracy, precision, recall, and F1-score. The results will be analyzed to identify the most effective prompting technique for classifying students based on their results.
