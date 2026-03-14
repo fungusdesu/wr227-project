@@ -1,32 +1,83 @@
 \section{Methodology}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.5\textwidth]{diagram.jpg}
-\end{figure}
 
-We utilize a traditional framework outlined in \cite{DiazRamirez2023}. The process is divided into two phases: the descriptive phase comprises demographics survey, data filtering and preprocessing; the predictive phase builds the model and feed the data into said model.
+\subsection{Dataset Choice and Preprocessing}
 
-\subsection{Descriptive phase}
-A survey is deployed that encompasses these features outlined in \cite{Suleiman2024}:
-\begin{center}
-	\bgroup
-	\def\arraystretch{1.5}
-	\captionof{table}{Survey features}
-	\label{tab:Table1}
-	\begin{tabular}{p{3cm}p{6cm}p{2cm}}
-		\toprule
-		\footnotesize \textbf{Name} & \footnotesize \textbf{Description} & \footnotesize \textbf{Label} \\
-		\midrule
-		\footnotesize Study hours & \footnotesize Time spent revising study materials & \footnotesize Feature 1 \\
-		\footnotesize Practice hours & \footnotesize Time spent practicing with exercises and mock exams & \footnotesize Feature 2 \\
-		\footnotesize Extracurricular activities & \footnotesize Whether the student participate in extracurricular activities & \footnotesize Feature 3 \\
-		\footnotesize Sleep hours & \footnotesize Time spent sleeping & \footnotesize Feature 4 \\
-		\footnotesize Exam score & \footnotesize Resulting score of the exam on the scale from 1---10 & \footnotesize Feature 5 \\
-		\bottomrule
-	\end{tabular}
-	\egroup
-\end{center}
-The survey is conducted on the population of various universities in Ho Chi Minh City. As delineated in \autoref{tab:Table1}, the survey consists of five questions; three of which is in the form of a five-level Likert-type scale (Feature 1, 2, 4), one of which is in the form of a Boolean (Feature 4), and one of which is in the form of a continuous variable (Feature 5). The dataset is divided into two subsets in the ratio 80:20, the former is used for training and the latter is used for testing.
 
-\subsection{Predictive phase}
-As outlined in the literature review, various decision tree-based model are analyzed (decision tree, random forest, gradient boosting, etc.). In order for a more balanced classification, SMOTE is also applied.
+\subsection{Methodological Pipeline Overview}
+
+We propose a five-stage pipeline to leverage Large Language Models (LLMs) for predicting students' final examination scores based on their demographic, engagement, and historical performance data. The stages are as follows:
+
+
+\subsubsection{Data Integration and Feature Engineering}
+
+The foundational stage of our pipeline focuses on consolidating disparate educational data sources into a cohesive, feature-rich dataset. We integrate three primary data tables using unique student and module identifiers: demographic and background data (studentInfo), Virtual Learning Environment (VLE) interaction logs (studentVle), and academic performance outcomes (studentAssessment).
+
+
+Because the VLE logs consist of highly granular, daily interaction data, we perform temporal aggregation to summarize student engagement into meaningful predictive metrics. Specifically, we calculate the total click volume \verb|sum_click| and categorize these interactions by distinct activity types, such as homepage visits, forum participation, and subpage views. Following the feature engineering process, we define our primary prediction target as the numerical final score, a continuous variable ranging from 0 to 100, extracted directly from the studentAssessment table.
+
+\subsubsection{Scaling via Retrieval Mechanism}
+
+To effectively harness historical training data without exceeding the context window limitations of the LLM, we introduce a non-parametric retrieval module. For any given "test" query—representing a student whose score requires prediction—the system utilizes a K-Nearest Neighbors (K-NN) retrieval policy to identify the most relevant historical training instances.
+
+To ensure the retrieval process isolates the most predictive exemplars rather than superficially similar rows, we apply targeted feature weighting prior to calculating distance metrics. By utilizing statistical measures such as Pearson Correlation or Predictive Power Score (PPS), we assign higher weights to highly informative attributes. Consequently, strongly correlated features, such as the student's highest level of education \verb|highest_education| and aggregated engagement metrics \verb|sum_click|, disproportionately influence the selection of the supporting k exemplars.
+
+\subsubsection{Data Serialization and Prompt Construction}
+
+Once the optimal supporting exemplars are retrieved, the tabular data must be translated into a modality comprehensible to the language model. We employ a data serialization process that converts the retrieved tabular rows into a structured text format. Depending on the specific experimental configuration, this is achieved using either Markdown tables or a highly structured prose format (e.g., "Education: A-Level; Clicks: 450; Result: 85"). These formats are chosen for their proven efficacy in preserving the structural integrity of tabular data while facilitating semantic interpretation by the LLM.
+
+The final input is dynamically constructed using a standardized prompt template. This template systematically concatenates the overarching task instructions, the serialized training exemplars (acting as in-context learning shots), and the target test student's query.
+
+\subsubsection{Inference and Answer Extraction}
+
+During the inference phase, the constructed prompt is processed by the language model. To maintain experimental reproducibility and establish a stable baseline, we primarily utilize a greedy decoding strategy. However, when evaluating advanced ensembling techniques such as Self-Consistency, temperature sampling is applied to generate a diverse set of reasoning paths.
+
+Because LLMs frequently embed their final numerical predictions within a broader explanatory text or chain-of-thought sequence, an automated answer cleansing protocol is strictly necessary. We implement a dedicated parser utilizing regular expressions (regex) to isolate and extract the final predicted score from the model’s generated output, thereby ensuring clean and strictly numerical data for downstream evaluation.
+
+\subsubsection{Evaluation Framework}
+
+The final stage of the methodology establishes a rigorous evaluation framework to assess the predictive accuracy and reliability of the pipeline. Model performance is primarily quantified using Mean Absolute Error (MAE) and Normalized Mean Absolute Error (NMAE), which directly measure the magnitude of the distance between the model's predicted scores and the actual ground-truth assessments.
+
+Beyond primary accuracy metrics, we conduct comprehensive robustness checks to validate the stability of the proposed approach. This includes evaluating the model's sensitivity to the ordering of the retrieved exemplars within the prompt. Furthermore, we monitor the label distribution of the retrieved set to ensure that the k selected examples represent a sufficiently balanced and diverse range of target scores, preventing bias toward the majority class.
+
+\subsection{Language Models and Prompting Techniques Choice}
+
+\subsubsection{Language Models Choice}
+
+We utitilize several commercially available Large Language Models (LLMs) to evaluate the effectiveness of our proposed pipeline. The models selected for this study include:
+
+\begin{tabular} {|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Provider} & \textbf{Parameters} \\
+\hline
+
+GPT-3.5 & OpenAI & 175B \\
+\hline
+GPT-4 & OpenAI & 1T \\
+\hline
+Gemini Pro & Google DeepMind & 1.5T \\
+\hline
+Claude 2 & Anthropic & 100B \\
+\hline
+\end{tabular}
+
+\subsubsection{Prompting Techniques Choice}
+
+To maximize the performance of the selected LLMs, we implement a variety of prompting techniques that have been shown to enhance model reasoning and accuracy. The techniques include:
+
+\begin{itemize}
+      \item \textbf{Few-Shot Prompting}: This approach conditions the model on a small number of training examples, referred to as exemplars, which serve as demonstrations of the task. This technique is foundational to ICL and serves as a primary method for providing "train set" context to the model. (Brown et al., 2020).
+      \item \textbf{Zero-Shot Prompting}: Employed as a baseline, this technique provides the model with task instructions but no exemplars, relying entirely on the model's pre-trained internal knowledge to generate a prediction.
+      \item \textbf{Chain-of-Thought (CoT) Prompting}: To improve performance on tasks requiring multi-step logical reasoning, CoT prompting encourages the LLM to articulate a series of intermediate reasoning steps before delivering the final answer. (Wei et al., 2022b).
+      \item \textbf{Zero-Shot-CoT}: This task-agnostic technique elicits reasoning by appending a simple "thought inducer" phrase, such as "Let’s think step by step," to the end of the prompt. (Kojima et al., 2022).
+      \item \textbf{Tabular Chain-of-Thought (Tab-CoT)}: Specifically designed for structured data, this method prompts the model to output its reasoning and final score prediction in the format of a Markdown table, which can improve the internal structuring of the model's logic. (Jin and Lu, 2023).
+      \item \textbf{Retrieval-Augmented In-Context Learning (TabRAG)}: Given the scale of the training set, this method uses a non-parametric retrieval module to identify the k-nearest neighbor training instances most semantically similar to a specific test query. This allows the model to scale to "any-shot" scenarios by utilizing a dynamic support set tailored to each query. (Lewis et al., 2020; Wen et al., 2025).
+      \item \textbf{K-Nearest Neighbor (KNN) Prompting}: This strategy selects exemplars based on their similarity to the test sample to boost prediction accuracy. (Liu et al., 2021).
+      \item \textbf{Self-Consistency}: This decoding strategy moves beyond greedy decoding by sampling multiple diverse reasoning paths from the model and using a majority vote (or average for numerical scores) to select the most consistent final answer. (Wang et al., 2022).
+      \item \textbf{Least-to-Most Prompting}: This technique decomposes the score prediction task into simpler sub-problems (e.g., analyzing background first, then behavior) and solves them sequentially to arrive at the final result. (Zhou et al., 2022a).
+      \item \textbf{Plan-and-Solve Prompting}: An improvement upon Zero-Shot-CoT, this method instructs the model to first devise a plan for how it will solve the problem before carrying it out step-by-step. (Wang et al., 2023f).
+      \item \textbf{Automatic Directed CoT (AutoDiCoT)}: This algorithm automatically generates reasoning chains for the training set and explicitly includes contrastive examples of incorrect reasoning to teach the model which patterns in student behavior should be avoided or ignored.
+\end{itemize}
+
+
+
+
