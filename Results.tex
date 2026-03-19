@@ -18,3 +18,15 @@ In addition, the F1 score is also utilized, calculated as the harmonic mean of p
 	\text{F1 Score} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}.
 \]
 As shown in Fig. 1, Gradient Boosting consistently outperforms other predictive models.
+
+\subsection{Large Language Models}
+\begin{figure}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{code/plots/qwen.png}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{code/plots/llama.png}
+	\end{minipage}
+	\caption{Performance comparison of Qwen2.5-3B and Meta-Llama3-9B}
+\end{figure}
+We use a modified metric for LLMs---Macro F1. This metric effectively treats each class in a model equally important by taking the mean of the F1 scores of each class. Observe that it performs noticeably worse than the lowest scoring traditional predictive model.
