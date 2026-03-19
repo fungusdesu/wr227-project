@@ -4,3 +4,9 @@
 /OULAD
 /venv
 code/__pycache__/preprocess.cpython-314.pyc
+code/models
+code/llama-cli
+code/llama-server
+code/metrics.png
+code/plots/
+code/results/
