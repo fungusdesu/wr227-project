@@ -1,0 +1,7 @@
+Model,Best Params,CV Balanced Accuracy,Test Accuracy,Test Balanced Accuracy,Test F1 (weighted)
+Random Forest,"{'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 50, 'bootstrap': False}",0.8217464170134073,0.7611596870685688,0.7192913706586374,0.7542926918464458
+Decision Tree,"{'splitter': 'best', 'min_samples_split': 20, 'min_samples_leaf': 4, 'max_features': None, 'max_depth': 10, 'criterion': 'gini'}",0.7587977691669292,0.7188219052001841,0.6850141718899159,0.7147508269591238
+Support Vector Machine,"{'svc__kernel': 'rbf', 'svc__gamma': 'auto', 'svc__class_weight': 'balanced', 'svc__C': np.float64(0.7847599703514611)}",0.7998782910913423,0.7399907961343765,0.6353753222451312,0.7202917839098858
+Gradient Boosting,"{'subsample': 1.0, 'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 4, 'max_features': None, 'max_depth': 5, 'learning_rate': 0.2}",0.8151732065190185,0.7646878355576009,0.7177984247731387,0.7575423419893712
+Gaussian Naive Bayes,{'var_smoothing': np.float64(9.22197882333434e-12)},0.5197694769835871,0.5126553152323976,0.5244615012557408,0.5044500022278267
+K-Nearest Neighbors,"{'knn__weights': 'uniform', 'knn__p': 1, 'knn__n_neighbors': 7, 'knn__metric': 'minkowski', 'knn__leaf_size': 50}",0.7479518943989486,0.6872219665592882,0.5953914983436921,0.6692654992101421
