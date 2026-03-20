@@ -67,7 +67,7 @@ def _search_configs(random_state: int):
 		'Gradient Boosting': (
 			GradientBoostingClassifier(random_state=random_state),
 			{
-				'n_estimators': [100, 200, 300, 500],
+				'n_estimators': [25, 50, 75, 100],
 				'learning_rate': [0.01, 0.03, 0.05, 0.1, 0.2],
 				'max_depth': [2, 3, 5, 7],
 				'min_samples_split': [2, 5, 10, 20],

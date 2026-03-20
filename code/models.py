@@ -46,10 +46,13 @@ def evaluate_model(model_name, model, X_train, y_train, X_test, y_test, results)
 
 def random_forest(X_train, y_train, X_test, y_test, results):
     model = RandomForestClassifier(
-        n_estimators=100,
-        max_depth=None,
+        n_estimators=300,
+        max_depth=50,
         random_state=0,
-        min_samples_split=2
+        min_samples_split=5,
+        min_samples_leaf=2,
+        max_features='sqrt',
+        bootstrap=False
     )
     evaluate_model('Random Forest', model, X_train, y_train, X_test, y_test, results)
 
@@ -57,13 +60,25 @@ def random_forest(X_train, y_train, X_test, y_test, results):
 def decision_tree(X_train, y_train, X_test, y_test, results):
     model = DecisionTreeClassifier(
         random_state=0,
-        min_samples_split=2
+        min_samples_split=20,
+        min_samples_leaf=4,
+        max_depth=10,
+        criterion='gini',
+        splitter='best',
     )
     evaluate_model('Decision Tree', model, X_train, y_train, X_test, y_test, results)
 
 
 def gradient_boosting(X_train, y_train, X_test, y_test, results):
-    model = GradientBoostingClassifier(n_estimators=100)
+    model = GradientBoostingClassifier(
+        n_estimators=100,
+        subsample =1,
+        learning_rate = 0.2,
+        min_samples_split=2,
+        min_samples_leaf=4,
+        max_depth=5,
+        max_features='auto',
+        )
     evaluate_model('Gradient Boosting', model, X_train, y_train, X_test, y_test, results)
 
 
@@ -71,7 +86,7 @@ def support_vector_machine(X_train, y_train, X_test, y_test, results):
     model = Pipeline([
         ('scaler', StandardScaler()),
         ('svm', LinearSVC(
-            C=0.5,
+            C=0.785,
             class_weight='balanced',
             random_state=0,
             max_iter=5000,
@@ -82,7 +97,7 @@ def support_vector_machine(X_train, y_train, X_test, y_test, results):
 
 
 def gaussian_naive_bayes(X_train, y_train, X_test, y_test, results):
-    model = GaussianNB(var_smoothing=1e-12)
+    model = GaussianNB(var_smoothing=9.22e-12)
     evaluate_model('Gaussian Naive Bayes', model, X_train, y_train, X_test, y_test, results)
 
 
@@ -90,9 +105,11 @@ def k_nearest_neighbors(X_train, y_train, X_test, y_test, results):
     model = Pipeline([
         ('scaler', StandardScaler()),
         ('knn', KNeighborsClassifier(
-            n_neighbors=31,
+            n_neighbors=7,
             weights='uniform',
-            p=1
+            p=1,
+            metric='minkowski',
+            leaf_size=50
         ))
     ])
     evaluate_model('K-Nearest Neighbors', model, X_train, y_train, X_test, y_test, results)
