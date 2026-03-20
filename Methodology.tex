@@ -48,9 +48,57 @@ To correctly and effectively classify the students' final results, preprocessing
 \subsubsection{Preprocessing}
 
 In the figure below, we outline the steps taken to preprocess the OULAD dataset. 
-
+\begin{center}
 \begin{figure}[H]
+    \includegraphics[width=1.25\textwidth]{figures/PP_pipeline.png}
+    \caption{Preprocessing pipeline for the OULAD dataset}
 \end{figure}
+\end{center}
 
-In the first step.
+We divide the tables into three groups: background (studentInfo), performance (studentAssessment and assessments), and behavior (studentVle, vle, and assessments for cutoff construction). We thus perform the following preprocessing tasks on each group as follows:
+
+\begin{itemize}
+    \item \textbf{Background:} We first perform one-hot encoding on the categorical features in the \texttt{studentInfo} table, which include students' gender, region, highest education and disability status. For age and IMD bands, we perform ordinal encoding, as these features have an inherent order.
+    \item \textbf{Performance:} We first merge the \texttt{studentAssessment} and \texttt{assessments} tables on \texttt{id\_assessment}. Missing due dates and scores are explicitly tracked using binary indicators (\texttt{has\_due\_date} and \texttt{score\_missing}), and missing values are imputed using the median. We then engineer timing features from submission behavior, including \texttt{submission\_delay}, late/early flags, and a capped delay variable based on the 1st and 99th percentiles to reduce outlier effects. In addition, we compute weighted performance (\texttt{weighted\_score}) using assessment weights and its min-max normalized version. Finally, we aggregate all assessment records at the student-module-presentation level (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}) to produce summary statistics (counts, central tendency, variability, weighted-score totals, lateness ratios, delay average, and missingness ratios), and append assessment-type frequency features via a pivot table.
+    \item \textbf{Behavior:} To construct behavior features from VLE interactions, we first derive a module-presentation cutoff date as the latest assessment date and keep only clicks that occur on or before this cutoff, preventing post-assessment leakage. We then merge \texttt{studentVle} with \texttt{vle} to attach \texttt{activity\_type} for each \texttt{id\_site} (with missing types labeled as unknown). Next, we aggregate \texttt{sum\_click} values per student-module-presentation and activity type, and pivot them into wide features (e.g., \texttt{clicks\_forum}, \texttt{clicks\_resource}). Because interactions are processed in chunks for scalability, we finally sum partial chunk-level results to obtain one behavior-feature row per (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}).
+    
+\end{itemize}
+
+After preprocessing, we aggregate three groups of features, using \texttt{student\_id} as the key, to create the final dataset for modeling. This dataset contains 32,593 records and 72 features, including the students' ID and their final results. The final results are categorized into four classes: \texttt{Distinction}, \texttt{Pass}, \texttt{Fail}, and \texttt{Withdrawn}. 
+
+Next, we split the dataset into training and testing sets, with an 80-20 split. We use \texttt{sk\_learn}'s \texttt{SMOTE} to address class imbalance in the training set, which is a common issue in educational datasets where certain outcomes (e.g., withdrawal) may be more prevalent than others. This  increases the size of the train set to 39,556 records, which raises the total dataset size to 46,076 records.
+
+\subsection{Modeling}
+
+For this research, we utitlize \texttt{sk\_learn}'s implementations of the following traditional machine learning models: Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, Gaussian Naive Bayes, and K-Nearest Neighbors. The parameters for each models are obtained by running \texttt{sk\_learn}'s \texttt{RandomizedSearchCV} on the models and the dataset and presented in the following table:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|p{0.24\linewidth}|p{0.68\linewidth}|}
+\hline
+\textbf{Model} & \textbf{Parameters} \\
+\hline
+Random Forest & \texttt{n\_estimators=300}, \texttt{max\_depth=50}, \texttt{random\_state=0}, \texttt{min\_samples\_split=5}, \texttt{min\_samples\_leaf=2}, \texttt{max\_features='sqrt'}, \texttt{bootstrap=False} \\
+\hline
+Decision Tree & \texttt{random\_state=0}, \texttt{min\_samples\_split=20}, \texttt{min\_samples\_leaf=4}, \texttt{max\_depth=10}, \texttt{criterion='gini'}, \texttt{splitter='best'} \\
+\hline
+Gradient Boosting & \texttt{n\_estimators=100}, \texttt{subsample=1}, \texttt{learning\_rate=0.2}, \texttt{min\_samples\_split=2}, \texttt{min\_samples\_leaf=4}, \texttt{max\_depth=5}, \texttt{max\_features='auto'} \\
+\hline
+Support Vector Machine & \texttt{StandardScaler()} + \texttt{LinearSVC(C=0.785, class\_weight='balanced', random\_state=0, max\_iter=5000, dual='auto')} \\
+\hline
+Gaussian Naive Bayes & \texttt{var\_smoothing=9.22e-12} \\
+\hline
+K-Nearest Neighbors & \texttt{StandardScaler()} + \texttt{KNeighborsClassifier(n\_neighbors=7, weights='uniform', p=1, metric='minkowski', leaf\_size=50)} \\
+\hline
+\end{tabular}
+\caption{Hyperparameters used for each traditional machine learning model.}
+\label{tab:model_hyperparameters}
+\end{table}
+
+For baseline LLMs, we utilize two models available on Huggin Face: \texttt{qwen-2.5-3b} and \texttt{llama-2-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting. The prompt used is as follows:
+
+\begin{center}
+    Put the prompt here.
+\end{center}
 
