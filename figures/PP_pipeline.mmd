@@ -1,0 +1,83 @@
+flowchart TB
+    %%{init: {'theme':'base','themeVariables': {
+      'primaryColor':'#ffffff',
+      'primaryTextColor':'#111111',
+      'primaryBorderColor':'#111111',
+      'lineColor':'#111111',
+      'secondaryColor':'#f6f6f6',
+      'tertiaryColor':'#ffffff',
+      'fontFamily':'Times New Roman'
+    }}}%%
+
+    LBL1["Input Tables"]
+    subgraph Inputs[" "]
+      direction TB
+      SI["studentInfo"]
+      SA["studentAssessment"]
+      A["assessments"]
+      SV["studentVle"]
+      V["vle"]
+    end
+
+    LBL2["Feature Preparation"]
+    subgraph FeaturePrep[" "]
+      direction TB
+      SI_PP["Preprocess studentInfo"]
+      SA_AGG["Aggregate by assessment ID"]
+      SA_PP["Preprocess assessment features"]
+      SV_AGG["Aggregate by site ID"]
+      SV_PP["Preprocess behavior features"]
+    end
+
+    LBL3["Prepared Feature Sets"]
+    subgraph OutputsPrep[" "]
+      direction TB
+      F_INFO["StudentInfo features"]
+      F_PERF["Performance features"]
+      F_BEH["Behavior features"]
+    end
+
+    LBL4["Final Dataset"]
+    subgraph FinalStage[" "]
+      direction TB
+      JOIN["Merge by student ID"]
+      TRAIN["Training set (SMOTE applied)"]
+      TEST["Test set"]
+    end
+
+    LBL1 ~~~ SI
+    LBL2 ~~~ SI_PP
+    LBL3 ~~~ F_INFO
+    LBL4 ~~~ JOIN
+
+    SI --> SI_PP --> F_INFO
+
+    SA --> SA_AGG
+    A --> SA_AGG
+    SA_AGG --> SA_PP --> F_PERF
+
+    SV --> SV_AGG
+    V --> SV_AGG
+    SV_AGG --> SV_PP --> F_BEH
+
+    F_INFO --> JOIN
+    F_PERF --> JOIN
+    F_BEH --> JOIN
+
+    JOIN --> TRAIN
+    JOIN --> TEST
+
+    classDef table fill:#ffffff,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef process fill:#f6f6f6,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef output fill:#ffffff,stroke:#111111,stroke-width:1.4px,color:#111111;
+    classDef label fill:transparent,stroke:transparent,color:#111111;
+
+    class SI,SA,A,SV,V table;
+    class SI_PP,SA_AGG,SA_PP,SV_AGG,SV_PP,JOIN process;
+    class F_INFO,F_PERF,F_BEH,TRAIN,TEST output;
+    class LBL1,LBL2,LBL3,LBL4 label;
+
+    style Inputs fill:#ffffff,stroke:#111111,stroke-width:1px;
+    style FeaturePrep fill:#ffffff,stroke:#111111,stroke-width:1px;
+    style OutputsPrep fill:#ffffff,stroke:#111111,stroke-width:1px;
+    style FinalStage fill:#ffffff,stroke:#111111,stroke-width:1px;
