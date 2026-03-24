@@ -5,13 +5,14 @@ import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score
 from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
-from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+from skelm import ELMClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-
+import dask.array as da
 
 def _data_dir() -> Path:
 	return Path(__file__).resolve().parent.parent / 'OULAD'
@@ -76,12 +77,6 @@ def _search_configs(random_state: int):
 				'max_features': ['sqrt', 'log2', None],
 			},
 		),
-		'Gaussian Naive Bayes': (
-			GaussianNB(),
-			{
-				'var_smoothing': np.logspace(-12, -6, 200),
-			},
-		),
 		'K-Nearest Neighbors': (
 			Pipeline(
 				[
@@ -95,6 +90,35 @@ def _search_configs(random_state: int):
 				'knn__p': [1, 2],
 				'knn__metric': ['minkowski', 'euclidean', 'manhattan'],
 				'knn__leaf_size': [10, 20, 30, 40, 50],
+			},
+		),
+		'Extreme Learning Machine': (
+			Pipeline(
+				[
+					('scaler', StandardScaler()),
+					('elm', ELMClassifier(random_state=random_state)),
+				]
+			),
+			{
+				'elm__n_neurons': [100, 300, 500, 700, 1000],
+				'elm__ufunc': ['tanh', 'sigm', 'relu'],
+				'elm__alpha': [1e-5, 1e-4, 1e-3, 1e-2],
+			},
+		),
+		'Multi-layer Perceptron': (
+			Pipeline(
+				[
+					('scaler', StandardScaler()),
+					('mlpc', MLPClassifier(random_state=random_state)),
+				]
+			),
+			{
+				'mlpc__hidden_layer_sizes': [(50,), (100,), (200,), (100, 50), (200, 100)],
+				'mlpc__activation': ['relu', 'tanh', 'logistic'],
+				'mlpc__alpha': [0.0001, 0.001, 0.01, 0.1],
+				'mlpc__learning_rate': ['constant', 'adaptive'],
+				'mlpc__solver': ['adam', 'lbfgs', 'sgd'],
+				'mlpc__max_iter': [200, 500, 1000],
 			},
 		),
 	}
@@ -161,7 +185,6 @@ def main():
 			n_iter=n_iter,
 			random_state=random_state,
 		)
-		results.append(result)
 
 		print(f"Best Params: {result['Best Params']}")
 		print(f"CV Balanced Accuracy: {result['CV Balanced Accuracy']:.4f}")
@@ -169,11 +192,13 @@ def main():
 		print(f"Test Balanced Accuracy: {result['Test Balanced Accuracy']:.4f}")
 		print(f"Test F1 (weighted): {result['Test F1 (weighted)']:.4f}")
 
+		results.append(result)
+
 	results_df = pd.DataFrame(results)
 	print('\n===== Final Summary =====')
 	print(results_df[['Model', 'CV Balanced Accuracy', 'Test Accuracy', 'Test Balanced Accuracy', 'Test F1 (weighted)']])
 
-	output_path = Path(__file__).resolve().parent / 'random_search_results.csv'
+	output_path = Path(__file__).resolve().parent / 'random_search_results_py.csv'
 	results_df.to_csv(output_path, index=False)
 	print(f'\nSaved full results to: {output_path}')
 

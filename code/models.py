@@ -1,9 +1,10 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import LinearSVC
-from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+import dask.array as da
+from skelm import ELMClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score
@@ -11,6 +12,8 @@ import pandas as pd
 import pathlib as path
 import matplotlib.pyplot as plt
 import numpy as np
+
+_ = da
 
 
 def _data_dir():
@@ -56,19 +59,6 @@ def random_forest(X_train, y_train, X_test, y_test, results):
     )
     evaluate_model('Random Forest', model, X_train, y_train, X_test, y_test, results)
 
-
-def decision_tree(X_train, y_train, X_test, y_test, results):
-    model = DecisionTreeClassifier(
-        random_state=0,
-        min_samples_split=20,
-        min_samples_leaf=4,
-        max_depth=10,
-        criterion='gini',
-        splitter='best',
-    )
-    evaluate_model('Decision Tree', model, X_train, y_train, X_test, y_test, results)
-
-
 def gradient_boosting(X_train, y_train, X_test, y_test, results):
     model = GradientBoostingClassifier(
         n_estimators=100,
@@ -96,11 +86,6 @@ def support_vector_machine(X_train, y_train, X_test, y_test, results):
     evaluate_model('Support Vector Machine', model, X_train, y_train, X_test, y_test, results)
 
 
-def gaussian_naive_bayes(X_train, y_train, X_test, y_test, results):
-    model = GaussianNB(var_smoothing=9.22e-12)
-    evaluate_model('Gaussian Naive Bayes', model, X_train, y_train, X_test, y_test, results)
-
-
 def k_nearest_neighbors(X_train, y_train, X_test, y_test, results):
     model = Pipeline([
         ('scaler', StandardScaler()),
@@ -114,6 +99,26 @@ def k_nearest_neighbors(X_train, y_train, X_test, y_test, results):
     ])
     evaluate_model('K-Nearest Neighbors', model, X_train, y_train, X_test, y_test, results)
 
+def MLPC(X_train, y_train, X_test, y_test, results):
+    mlp = MLPClassifier(
+        hidden_layer_sizes=(100,50),
+        activation='relu',
+        solver='adam',
+        alpha=0.0001,
+        learning_rate='adaptive',
+        max_iter=5000,
+        random_state=0
+    )
+    evaluate_model('MLP Classifier', mlp, X_train, y_train, X_test, y_test, results)
+
+def ELM(X_train, y_train, X_test, y_test, results):
+    elm = ELMClassifier(
+        n_neurons=500,
+        ufunc='tanh',
+        alpha=1e-4,
+        random_state=69
+    )
+    evaluate_model('ELM Classifier', elm, X_train, y_train, X_test, y_test, results)
 
 def plot_results(results):
     results_df = pd.DataFrame(results)
@@ -150,12 +155,11 @@ def __main__():
     results = []
 
     random_forest(X_train, y_train, X_test, y_test, results)
-    decision_tree(X_train, y_train, X_test, y_test, results)
     gradient_boosting(X_train, y_train, X_test, y_test, results)
     support_vector_machine(X_train, y_train, X_test, y_test, results)
-    gaussian_naive_bayes(X_train, y_train, X_test, y_test, results)
     k_nearest_neighbors(X_train, y_train, X_test, y_test, results)
-
+    MLPC(X_train, y_train, X_test, y_test, results)
+    ELM(X_train, y_train, X_test, y_test, results)
     plot_results(results)
 
 
