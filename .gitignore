@@ -8,5 +8,10 @@ code/models
 code/llama-cli
 code/llama-server
 code/metrics.png
-code/plots/
 code/results/
+code/__pycache__
+code/random_search_results_py.csv
+code/model_results_r.csv
+code/random_search_results_r.csv
+code/refit_models_py.joblib
+code/refit_models_r.rds

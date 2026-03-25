@@ -37,6 +37,7 @@ get_script_dir <- function() {
 }
 
 script_dir <- get_script_dir()
+model_data <- NULL
 
 get_data_dir <- function() {
   normalizePath(file.path(script_dir, "..", "OULAD"), mustWork = TRUE)
@@ -90,24 +91,31 @@ evaluate_model <- function(model_name, fitted_model, X_test, y_test) {
   y_pred <- factor(y_pred, levels = levels(y_test))
 
   cm <- table(y_test, y_pred)
-  accuracy <- sum(diag(cm)) / sum(cm)
-  bal_acc <- balanced_accuracy(cm)
-  f1_weighted <- weighted_f1_score(cm)
+  test_accuracy <- sum(diag(cm)) / sum(cm)
+  test_bal_acc <- balanced_accuracy(cm)
+  test_f1_weighted <- weighted_f1_score(cm)
 
-  cat(sprintf("%s Accuracy: %.4f\n", model_name, accuracy))
-  cat(sprintf("%s Balanced Accuracy: %.4f\n", model_name, bal_acc))
-  cat(sprintf("%s F1 Score: %.4f\n\n", model_name, f1_weighted))
+  cat(sprintf("%s Test Accuracy: %.4f\n", model_name, test_accuracy))
+  cat(sprintf("%s Test Balanced Accuracy: %.4f\n", model_name, test_bal_acc))
+  cat(sprintf("%s Test F1 Score: %.4f\n\n", model_name, test_f1_weighted))
 
   data.frame(
     Model = model_name,
-    Accuracy = accuracy,
-    `Balanced Accuracy` = bal_acc,
-    `F1 Score` = f1_weighted,
+    `Test Accuracy` = test_accuracy,
+    `Test Balanced Accuracy` = test_bal_acc,
+    `Test F1 Score` = test_f1_weighted,
     check.names = FALSE
   )
 }
 
-train_models <- function(X_train, y_train) {
+train_models <- function() {
+  if (is.null(model_data)) {
+    stop("Training data not initialized.")
+  }
+
+  X_train <- model_data$X_train
+  y_train <- model_data$y_train
+
   set.seed(69)
   control <- trainControl(method = "cv", number = 3)
 
@@ -127,7 +135,7 @@ train_models <- function(X_train, y_train) {
       method = "rf",
       trControl = control,
       tuneGrid = data.frame(mtry = 10),
-      ntree = 300
+      ntree = 500
     ),
     `Support Vector Machine` = train(
       x = X_train,
@@ -188,7 +196,7 @@ plot_results <- function(results_df) {
   plots_dir <- get_plots_dir()
   output_path <- file.path(plots_dir, "performance_r.png")
 
-  metric_matrix <- as.matrix(results_df[, c("Accuracy", "Balanced Accuracy", "F1 Score")])
+  metric_matrix <- as.matrix(results_df[, c("Test Accuracy", "Test Balanced Accuracy", "Test F1 Score")])
   rownames(metric_matrix) <- results_df$Model
 
   png(output_path, width = 1400, height = 800, res = 140)
@@ -207,7 +215,7 @@ plot_results <- function(results_df) {
 
   legend(
     "topright",
-    legend = c("Accuracy", "Balanced Accuracy", "F1 Score"),
+    legend = c("Test Accuracy", "Test Balanced Accuracy", "Test F1 Score"),
     fill = c("#4C78A8", "#F58518", "#54A24B"),
     bty = "n"
   )
@@ -219,11 +227,16 @@ plot_results <- function(results_df) {
 }
 
 main <- function() {
-  data <- load_data()
-  models <- train_models(data$X_train, data$y_train)
+  model_data <<- load_data()
+  refit_path <- file.path(script_dir, "refit_models_r.rds")
+  if (!file.exists(refit_path)) {
+    stop(sprintf("Refit models not found at: %s. Run randomSearch.r first.", refit_path))
+  }
+
+  models <- readRDS(refit_path)
 
   results_list <- lapply(names(models), function(model_name) {
-    evaluate_model(model_name, models[[model_name]], data$X_test, data$y_test)
+    evaluate_model(model_name, models[[model_name]], model_data$X_test, model_data$y_test)
   })
 
   results_df <- do.call(rbind, results_list)
