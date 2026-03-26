@@ -3,45 +3,41 @@
 
 This paper chooses six traditional machine learning models for the classification task. These include: Random Forest, Support Vector Machine, Gradient Boosting, K-Nearest Neighbors, Extreme Learning Machines (ELM), and Multilayer Perceptron (MLP). The reason for selecting these models will be explained in the Methodology section. Below is a brief introduction to each of these models.
 
-\subsubsection{Random Forest}
+\subsubsection{Random Forest.}
 
 Random Forest (RF) is a ensemble learning method first proposed by Ho in 1995 \cite{Ho1995} then formally developed by Breiman and Cutler in 2006 \cite{Breiman2001}. The algorithm generates ("grow") multiple decision trees to vote for the final prediction, whose growth is each decided by a random vector $\Theta$, made independently from past vectors though with the same distribution. The final prediction of the Random Forest is made by aggregating the predictions, also called "voting", of all individual trees, typically through majority voting for classification tasks \cite{Breiman2001}. RF is known for its robustness to overfitting, ability to handle high-dimensional data, and effectiveness in capturing complex interactions between features \cite{Breiman2001}. It is widely used in various applications, including classification and regression tasks \cite{Breiman2001} and remains one of the most effective machine learning models, despite its early introduction \cite{Delgado2014}.
 
-\subsubsection{Support Vector Machine}
+\subsubsection{Support Vector Machine.}
 
 Support Vector Machine (SVM) is a supervised learning model that implement a simple idea: to find the optimal hyperplane that best separates the input data in a feature space into different classes. The optimal hyperplane is defined to be the one that maximizes the margin between the two classes, which is the distance between the hyperplane and the nearest data points from each class taken from training data, known as support vectors \cite{Cortes1995}. SVM can be extended to handle non-linearly separable data by using kernel functions, particularly Gaussian Radial Basis Function (RBF) kernel, which maps the input data into a higher-dimensional feature space where a linear separation is possible \cite{ekopf2002}. SVM is widely used for classification tasks due to its effectiveness in high-dimensional spaces and its ability to model complex relationships between features and classes \cite{Hsu2003}.
 
-\subsubsection{Gradient Boosting}
+\subsubsection{Gradient Boosting.}
 
 Gradient Boosting (GB) is an ensemble learning method that builds a series of weak learners, typically trees, that learns from the residuals of previous learners. Residuals are defined to be the differences between the predicted values and the actual values of the target variable.\cite{Chen2024}.The training algorithm of GB iterates through $M$ boosting rounds, where in each round $m$, a new weak learner $T_(m)$ is trained to predict the residuals, thereby rectifying mistakes made by the previous learners.\cite{Chen2024} The final prediction of the GB model is obtained by summing the predictions of all weak learners, weighted by a learning rate $\nu$ that controls the contribution of each learner to the final model \cite{Friedman2001}. The prediction process work as follows: for each tree $T_(m)$ and test instance $x_i$, the output $T_m(x_i)$ computed then scaled by learning rate $\nu$ and added to the cumulative prediction from previous trees, resulting in the final prediction $F_M(x_i) = \sum_{m=1}^M \nu T_m(x_i)$ \cite{Chen2024}. GB is known for its high predictive accuracy and is widely used in various applications, including classification and regression tasks \cite{Friedman2001}.
 
-\subsubsection{K-Nearest Neighbors}
+\subsubsection{K-Nearest Neighbors.}
 
 K-Nearest Neighbors (KNN) is a non-parametric, instance-based learning algorithm that classifies a data point based on the majority class among its $k$ nearest neighbors in the feature space \cite{Cover1967}. Distance between data points is typically measured by Euclidean distance, although other measures such as Pearson or Spearman distance can also be used \cite{Jaskowiak2011}. The choice of the algorithm's sole hyperparameter, $k$, is crucial for the performance of KNN. It is observed that a large value of $k$ can make the model be more independent of noise, though reducing interclass boundaries.\cite{Everitt2011}. Due to its simplicity, KNN's accuracy can be significantly affected by the choice of $k$ and the nature of the data, often require feature scaling to ensure that all features contribute equally to the distance calculations \cite{Nigsch2006}. KNN is noted for its strong consistency: as the size of data increases, the probability of KNN making an error converges to no worse than twice the Bayes error rate, which is the lowest possible error rate for any classifier \cite{Cover1967}.
 
-\subsubsection{Extreme Learning Machines}
+\subsubsection{Extreme Learning Machines.}
 
 Extreme Learning Machine (ELM) is a type of feedforward neural network, first proposed by Huang  et al. in 2006 \cite{Huang2006}. ELM is meant to be a learning algorithm for single-hidden layer feedforward neural networks (SLFNs) whose speed is significantly faster than traditional counterparts. ELM randomly assigns the input weights and hidden layer biases, and then analytically determines the output weights by solving a linear system of equations \cite{Huang2006}. The training process of ELM consists of three steps: (1) randomly generate the input weights and hidden layer biases; (2) compute the hidden layer output matrix; (3) calculate the output weights by using the Moore-Penrose generalized inverse of the hidden layer output matrix \cite{Huang2006}. ELM has been shown to achieve good generalization performance with significantly reduced training time compared to traditional feedforward neural networks, making it suitable for large-scale classification tasks, being able to surpass the performance of SVM in some regression and classification tasks \cite{Huang2012}.
 
-\subsubsection{Multilayer Perceptron}
+\subsubsection{Multilayer Perceptron.}
 
 Multilayer Perceptron (MLP) is a class of feedforward artificial neural network that consists of at least three layers: an input layer, one or more hidden layers, and an output layer \cite{Rosenblatt1958}. First proposed by Rosenblatt in 1958, MLP also serves as a basis for more complex neural network architectures, upon which ELM is built. Crucial in MLP architecture are the concepts of units and hidden layers. Units, also known as neurons, are the basic computational elements of MLP that receive input, process it, and produce output. Hidden layers are the layers of units that exist between the input and output layers, allowing MLP to learn complex representations of data \cite{Rosenblatt1958}. MLP functions by assigning weights to the connections between units and applying an activation function (commonly a sigmoid or ReLU function) to the output of each neuron. Learning in MLP is typically achieved through backpropagation and gradient descent algorithms, which adjust the weights to minimize the error between the predicted and actual outputs (modeled by a loss function) \cite{Haykin1999}.
 
-\subsection{Large Language Models}
+\subsection{Large Language Models.}
 
 Large Language Models (LLMs) presents a significant advancement in artificial intelligence, particularly in the field of natural language processing (NLP). The architecture of LLMs is based on the Transformer model, first introduced in a foundational paper by Vaswani et al. in 2017 \cite{Vaswani2017}. The Transformer architecture utitlizes self-attention mechanisms to process input data, allowing it to capture long-range dependencies and contextual information effectively \cite{Vaswani2017}. LLMs are trained on an enormous amount of data and often possess billions of parameters, enabling them to generate human-like text and perform a wide range of language tasks with high accuracy \cite{Brown2020}. The training process of LLMs typically involves two stages: pre-training and fine-tuning. During pre-training, the model learns general language patterns from a large corpus of text data, while fine-tuning involves further training the model on specific tasks or domains to enhance its performance in those areas \cite{Devlin2019}. The existence of LLMs revolutionized the field of artificial intelligence, in that they are the first models that can generalize across a wide range of tasks without task-specific training, and they have been shown to outperform traditional machine learning models in various NLP tasks \cite{Brown2020}.
 
 For our paper, we choose three models: Qwen-2.5-3B, LLaMa-2-8B, and Ministral-8B (the last suffix $X\text{B}$ of each model's name refers to the number of billions of parameters $X$ they have). These models are publicly available on the platform Hugging Face. Below is a brief introduction to each of these models.
 
-\subsubsection{Qwen-2.5-3B}
+\subsubsection{Qwen-2.5-3B.}
 
 Qwen-2.5-3B is a large language model developed by Alibaba, which is part of the Qwen series of models. The Qwen 2.5 series is deesigned to be more efficient than its predecessors, especially on coding and mathematical tasks. It has also been reported to enhance 
 instruction-following, producing longer responses (beyond 8K tokens), interpreting structured inputs (e.g., tables), and generating structured outputs, particularly in JSON format. It is also more robust to variations in system prompts, which improves role-playing behavior and condition control in chatbot applications.
 
-\subsubsection{LLaMa-3-8B}
+\subsubsection{LLaMa-3-8B.}
 
 LLama-3-8B is a large language model developed by Meta, which is part of the LLaMa series of models. It is designed to be more efficient and capable across diverse language tasks. Architecturally, LLaMa 3.1 is an autoregressive language model built on an optimized Transformer backbone. Its tuned variants are aligned with human preferences for helpfulness and safety through supervised fine-tuning (SFT), followed by reinforcement learning from human feedback (RLHF).
-
-\subsubsection{Ministral-8B}
-
-Ministral is an 8B-parameter language model that builds on the Mistral architecture by using an alternating attention design. Rather than applying a single attention strategy throughout the network, it cycles through one full-attention layer followed by three sliding-window-attention layers. This hybrid pattern enables support for contexts up to 128K tokens. This design is largely aligned with Qwen2; the primary architectural distinction is that Ministral includes bias terms in its attention projection layers.
