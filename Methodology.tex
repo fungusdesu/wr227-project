@@ -4,65 +4,79 @@ In this section, we explain the methodology used to conduct our research. We fir
 
 \subsection{Dataset and Preprocessing}
 
-\subsubsection{Dataset}
-
 We utilized a dataset named Open University Learning Analytics dataset (hereby referred to as OULAD), described in \cite{Kuzilek2017}. This dataset reports the background, behavior, and performance of students from England in a given Virtual Learning Environment (VLE). The dataset contains 32,593 records of 20 features, including demographic information, course interactions, and final results. The features include both categorical and numerical data, which required preprocessing before model training. The dataset, as outlined by its authors, consists of four modules:
 
-\begin{itemize}
-    \item \textbf{Student Demographics:} This module includes background information about the students, such as age, gender, and educational as well as socio-economic background. One notable feature is the Index of multiple deprivation (\href{https://www.gov.uk/government/statistics/english-indices-of-deprivation-2025/english-indices-of-deprivation-2025-statistical-release}{IMD}), which is a measure of socio-economic status based on the students' postal codes.
-    \item \textbf{Course Registrations:} This module contains information about the courses students are registered for, including course/presentation codes and their lengths. It also includes data students' registration and  unregistration dates.
-    \item \textbf{Assessment Results:} This module captures the students' performance in three types of assessments, namely Tutor Marked Assessments (TMA), Computer Marked Assessments (CMA), and Final Exams (Exam), adjusted by weights. It provides insights into their academic progress and outcomes.
-    \item \textbf{VLE interactions:} This module records the students' interactions with the Virtual Learning Environment (VLE), including the number of clicks on various pages and resources. It also includes the dates of these interactions, which can be used to analyze engagement patterns over time. This module also provides information on the resources in the VLE.
-\end{itemize}
+\begin{description}
+    \item[Student Demographics:] This module includes background information about the students, such as age, gender, and educational as well as socio-economic background. One notable feature is the Index of multiple deprivation (\href{https://www.gov.uk/government/statistics/english-indices-of-deprivation-2025/english-indices-of-deprivation-2025-statistical-release}{IMD}), which is a measure of socio-economic status based on the students' postal codes.
+    \item[Course Registrations:] This module contains information about the courses students are registered for, including course/presentation codes and their lengths. It also includes data students' registration and  unregistration dates.
+    \item[Assessment Results:] This module captures the students' performance in three types of assessments, namely Tutor Marked Assessments (TMA), Computer Marked Assessments (CMA), and Final Exams (Exam), adjusted by weights. It provides insights into their academic progress and outcomes.
+    \item[VLE interactions:] This module records the students' interactions with the Virtual Learning Environment (VLE), including the number of clicks on various pages and resources. It also includes the dates of these interactions, which can be used to analyze engagement patterns over time. This module also provides information on the resources in the VLE.
+\end{description}
 
-The following table summarizes the tables belonging to each module and the number of records in each table:
+The tables outlining these modules are given as follows:
 
 \begin{table}[H]
-\centering
-\begin{tabular}{|l|c|c|p{0.4\linewidth}|}
-\hline
-\textbf{Module} & \textbf{Table Name} & \textbf{Number of Records} & \textbf{Description} \\
-\hline
-Student Demographics & studentInfo & 32,593 & Contains demographic information about students. Contains the following columns: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{gender}, \texttt{region}, \texttt{highest\_education}, \texttt{imd\_band}, \texttt{age\_band}, \texttt{num\_of\_prev\_attempts}, \texttt{studied\_credits}, \texttt{disability}, \texttt{final\_result} \\
-\hline
-Course Registrations & courses & 22 & Contains information about courses. Contains the following columns: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{length} \\
-\hline
-Registrations & studentRegistration & 32,593 & Contains information about students' registrations. Contains the following columns: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{date\_registration}, \texttt{date\_unregistration} \\
-\hline
-Assessment Results & assessments & 206 & Contains information about assessments available in module-presentations. Contains the following columns: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_assessment},\texttt{assessment\_type}, \texttt{date}, \texttt{weight} \\
-\hline
-Assessment Results & studentAssessment & 173,912 & Contains information about students' results in assessments. Contains the following columns: \texttt{id\_student}, \texttt{id\_assessment}, \texttt{is\_banked}, \texttt{date\_submitted}, \texttt{score} \\
+    \centering
+    \small
+    \begin{tabularx}{\linewidth}{|l|l|c|X|}
+    \hline
+    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
+    Student Demographics & studentInfo & 32,593 & Demographic information: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{gender}, \texttt{region}, \texttt{highest\_education}, \texttt{imd\_band}, \texttt{age\_band}, \texttt{num\_of\_prev\_attempts}, \texttt{studied\_credits}, \texttt{disability}, \texttt{final\_result} \\ \hline
+    Course Registrations & courses & 22 & Course information: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{length} \\ \hline
+    Registrations & studentRegistration & 32,593 & Registration details: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{date\_registration}, \texttt{date\_unregistration} \\ \hline
+    \end{tabularx}
+    \caption{OULAD: Student and Course Demographics}
+    \label{tab:demographics}
+\end{table}
 
-\hline
-VLE interactions & interactions & 10,655,280 & Contains information about students' interactions with the VLE. Contains the following columns: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_site}, \texttt{date}, \texttt{sum\_click} \\
-\hline
-VLE interactions & vle & 6,364 & Contains information about the resources in the VLE. Contains the following columns: \texttt{id\_site}, \texttt{code\_module}, \texttt{code\_presentation}, \texttt{activity\_type}, \texttt{week\_from}, \texttt{week\_to} \\
-\hline
-\end{tabular}
-\caption{Summary of the OULAD dataset tables.}
-\label{tab:oulad_summary}
+\newpage
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabularx}{\linewidth}{|l|l|c|X|}
+    \hline
+    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
+    Assessment Results & assessments & 206 & Assessment structure: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_assessment}, \texttt{assessment\_type}, \texttt{date}, \texttt{weight} \\ \hline
+    Assessment Results & studentAssessment & 173,912 & Student performance: \texttt{id\_student}, \texttt{id\_assessment}, \texttt{is\_banked}, \texttt{date\_submitted}, \texttt{score} \\ \hline
+    \end{tabularx}
+    \caption{OULAD: Assessment Data}
+    \label{tab:assessments}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabularx}{\linewidth}{|l|l|c|X|}
+    \hline
+    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
+    VLE interactions & interactions & 10,655,280 & Clickstream data: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_site}, \texttt{date}, \texttt{sum\_click} \\ \hline
+    VLE interactions & vle & 6,364 & VLE resource metadata: \texttt{id\_site}, \texttt{code\_module}, \texttt{code\_presentation}, \texttt{activity\_type}, \texttt{week\_from}, \texttt{week\_to} \\ \hline
+    \end{tabularx}
+    \caption{OULAD: Virtual Learning Environment Interactions}
+    \label{tab:vle}
 \end{table}
 
 To correctly and effectively classify the students' final results, preprocessing must be done to merge the tables and create a single table containing all the features, keyed according to the \texttt{id\_student} column. In the next subsection, we describe the preprocessing steps taken to achieve this.
 
 \subsubsection{Preprocessing}
-
 In the figure below, we outline the steps taken to preprocess the OULAD dataset. 
 \begin{center}
-\begin{figure}[H]
-    \includegraphics[width=1.25\textwidth]{figures/PP_pipeline.png}
-    \caption{Preprocessing pipeline for the OULAD dataset}
-\end{figure}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figures/PP_pipeline.png}
+		\caption{Preprocessing pipeline for the OULAD dataset}
+	\end{figure}
 \end{center}
+
+
 
 We divide the tables into three groups: background (studentInfo), performance (studentAssessment and assessments), and behavior (studentVle, vle, and assessments for cutoff construction). We thus perform the following preprocessing tasks on each group as follows:
 
-\begin{itemize}
-    \item \textbf{Background:} We first perform one-hot encoding on the categorical features in the \texttt{studentInfo} table, which include students' gender, region, highest education and disability status. For age and IMD bands, we perform ordinal encoding, as these features have an inherent order.
-    \item \textbf{Performance:} We first merge the \texttt{studentAssessment} and \texttt{assessments} tables on \texttt{id\_assessment}. Missing due dates and scores are explicitly tracked using binary indicators (\texttt{has\_due\_date} and \texttt{score\_missing}), and missing values are imputed using the median. We then engineer timing features from submission behavior, including \texttt{submission\_delay}, late/early flags, and a capped delay variable based on the 1st and 99th percentiles to reduce outlier effects. In addition, we compute weighted performance (\texttt{weighted\_score}) using assessment weights and its min-max normalized version. Finally, we aggregate all assessment records at the student-module-presentation level (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}) to produce summary statistics (counts, central tendency, variability, weighted-score totals, lateness ratios, delay average, and missingness ratios), and append assessment-type frequency features via a pivot table.
-    \item \textbf{Behavior:} To construct behavior features from VLE interactions, we first derive a module-presentation cutoff date as the latest assessment date and keep only clicks that occur on or before this cutoff, preventing post-assessment leakage. We then merge \texttt{studentVle} with \texttt{vle} to attach \texttt{activity\_type} for each \texttt{id\_site} (with missing types labeled as unknown). Next, we aggregate \texttt{sum\_click} values per student-module-presentation and activity type, and pivot them into wide features (e.g., \texttt{clicks\_forum}, \texttt{clicks\_resource}). Because interactions are processed in chunks for scalability, we finally sum partial chunk-level results to obtain one behavior-feature row per (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}).
-    
-\end{itemize}
+\begin{description}
+    \item[Background:] We first perform one-hot encoding on the categorical features in the \texttt{studentInfo} table, which include students' gender, region, highest education and disability status. For age and IMD bands, we perform ordinal encoding, as these features have an inherent order.
+    \item[Performance:] We first merge the \texttt{studentAssessment} and \texttt{assessments} tables on \texttt{id\_assessment}. Missing due dates and scores are explicitly tracked using binary indicators (\texttt{has\_due\_date} and \texttt{score\_missing}), and missing values are imputed using the median. We then engineer timing features from submission behavior, including \texttt{submission\_delay}, late/early flags, and a capped delay variable based on the 1st and 99th percentiles to reduce outlier effects. In addition, we compute weighted performance (\texttt{weighted\_score}) using assessment weights and its min-max normalized version. Finally, we aggregate all assessment records at the student-module-presentation level (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}) to produce summary statistics (counts, central tendency, variability, weighted-score totals, lateness ratios, delay average, and missingness ratios), and append assessment-type frequency features via a pivot table.
+    \item[Behavior:] To construct behavior features from VLE interactions, we first derive a module-presentation cutoff date as the latest assessment date and keep only clicks that occur on or before this cutoff, preventing post-assessment leakage. We then merge \texttt{studentVle} with \texttt{vle} to attach \texttt{activity\_type} for each \texttt{id\_site} (with missing types labeled as unknown). Next, we aggregate \texttt{sum\_click} values per student-module-presentation and activity type, and pivot them into wide features (e.g., \texttt{clicks\_forum}, \texttt{clicks\_resource}). Because interactions are processed in chunks for scalability, we finally sum partial chunk-level results to obtain one behavior-feature row per (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}).
+\end{description}
 
 After preprocessing, we aggregate three groups of features, using \texttt{student\_id} as the key, to create the final dataset for modeling. This dataset contains 32,593 records and 72 features, including the students' ID and their final results. The final results are categorized into four classes: \texttt{Distinction}, \texttt{Pass}, \texttt{Fail}, and \texttt{Withdrawn}. 
 
@@ -76,7 +90,12 @@ In our paper, we utilize seven traditional machine learning models as baselines 
 
 The first two models, RF and SVM, are learning methods identified as top classifiers in Delgado et al.'s systematic review of educational data mining \cite{Delgado2014}. The paper also highlights other strong models, such as DT (C5.0 implementation), GB, ELM, and MLP. A review of the OULAD dataset by Alhakbani and Alnassar \cite{Alhakbani2022} also identifies DT (CART implementation) as a top-performing model in detecting at-risk students. Finally, KNN is also included, due to its simplicity, as we intend to explore if the classification task can be effectively solved using a simple distance-based method.
 
-Regarding implementation, all models are run with \texttt{sk\_learn} libraries; for the DT model, we also uses R programming language to implement the C5.0 algorithm, since \texttt{sk\_learn} only provides the CART implementation. We first run a 5-fold cross-validation on the training set to perform hyperparameter tuning for each model. We then select the best hyperparameters based on the average F1-score across folds, and train the final model on the entire training set using these hyperparameters. The selected hyperparameters for each model are summarized in the following table:
+Regarding implementation, all models are run with \texttt{sk\_learn} libraries; for the DT model, we also uses R programming language to implement the C5.0 algorithm, since \texttt{sk\_learn} only provides the CART implementation. We first run a 5-fold cross-validation on the training set to perform hyperparameter tuning for each model. We then select the best hyperparameters based on the average F1-score across folds, and train the final model on the entire training set using these hyperparameters.
+
+\subsubsection{Large Language Models}
+
+For baseline LLMs, we utilize two models available on Huggin Face: \texttt{Qwen-2.5-3b} and \texttt{LlaMa-3-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting.
+\newpage
 
 \begin{table}[H]
 \centering
@@ -104,17 +123,15 @@ Multi-layer Perceptron & \texttt{MLPClassifier(hidden\_layer\_sizes=(32,), activ
 \label{tab:model_hyperparameters}
 \end{table}
 
-The result of cross-validation is shown in the following figure:
-
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{code/plots/random_search_cv_py.png}
+	\centering
+    \includegraphics[width=0.91\textwidth]{code/plots/random_search_cv_py.png}
     \caption{Cross-validation results for traditional machine learning models.}
 \end{figure}
-\subsubsection{Large Language Models}
 
-For baseline LLMs, we utilize two models available on Huggin Face: \texttt{Qwen-2.5-3b} and \texttt{LlaMa-3-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting. The prompt used is as follows:
-
-\begin{center}
-    Put the prompt here.
-\end{center}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{prompt.png}
+    \caption{Function to build LLMs prompt}
+\end{figure}
 
