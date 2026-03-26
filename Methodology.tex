@@ -129,9 +129,47 @@ Multi-layer Perceptron & \texttt{MLPClassifier(hidden\_layer\_sizes=(32,), activ
     \caption{Cross-validation results for traditional machine learning models.}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{prompt.png}
-    \caption{Function to build LLMs prompt}
-\end{figure}
+\begin{lstlisting}[style=custompython,caption={Function to build LLMs prompt}]
+def build_prompt(
+    base_prompt: str,
+    row_dict: dict,
+    few_shot_examples: list[tuple[dict, str]],
+) -> str:
+    current_row_json = json.dumps(row_dict, ensure_ascii=False)
+
+    parts = [
+        base_prompt,
+        "Allowed labels: Distinction, Pass, Withdrawn, Fail.",
+        "Infer the label from the pattern in the examples.",
+        "Do not default to the most common example label.",
+        "Output exactly one line in this format:",
+        "LABEL=<one of Distinction, Pass, Withdrawn, Fail>",
+        "Do not output anything else.",
+    ]
+
+    if few_shot_examples:
+        parts.append("")
+        parts.append("Examples:")
+
+        for idx, (example_x, example_y) in enumerate(few_shot_examples, start=1):
+            example_x_json = json.dumps(sanitize_row(example_x), ensure_ascii=False)
+            parts.extend(
+                [
+                    f"Example {idx}:",
+                    f"Student record:\n{example_x_json}",
+                    f"LABEL={example_y}",
+                    "",
+                ]
+            )
+
+    parts.extend(
+        [
+            "Now classify this record:",
+            f"Student record:\n{current_row_json}",
+            "Answer:",
+        ]
+    )
+
+    return "\n".join(parts)
+\end{lstlisting}
 

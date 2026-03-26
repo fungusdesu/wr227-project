@@ -16,8 +16,23 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{float}
+\usepackage{listings}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
+\lstdefinestyle{custompython}{
+	language=Python,
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{blue},
+	commentstyle=\color{teal},
+	stringstyle=\color{magenta},
+	showstringspaces=false,
+	breaklines=true,
+	breakatwhitespace=false,
+	columns=fullflexible,
+	keepspaces=true,
+	frame=single,
+	tabsize=4
+}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -45,7 +60,7 @@
 \author{Thien-Lac Quach\inst{1,2}\orcidID{0009-0004-6310-5149}\and
 Ton-Minh-Ky Tran\inst{1,2}\orcidID{0009-0006-5027-2516}}
 %
-\authorrunning{F. Author et al.}
+\authorrunning{Quach \& Tran} 
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
@@ -56,11 +71,9 @@ Vietnam National University, Ho Chi Minh City, Vietnam
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-\lipsum[1]
-
-\keywords{}
+There has been an increasing interest in leveraging Large Language Models (LLMs) for various tasks, including classification problems. In this paper, we analyze the performance of LLMs in a complex classification task within an educational context---predicting students' final academic outcomes. We compare two LLMs, prompted using different techniques, against proven traditional machine learning models. Our results indicate that despite their complexity and size, LLMs heavily underperform compared to traditional models in this specific task. In our future work, we aim to explore and further validate the reasons behind this discrepancy, and investigate potential improvements in prompting techniques or model architectures to enhance the performance of LLMs in classification tasks.
+\keywords{Large Language Models \and Traditional Machine Learning Models \and Classification problem \and Prompting techniques \and Educational context}
 \end{abstract}
-%
 %
 %
 \newpage
@@ -70,6 +83,9 @@ Vietnam National University, Ho Chi Minh City, Vietnam
 
 \input{Methodology.tex}
 \input{Results.tex}
+\input{Discussion.tex}
+\input{Conclusion.tex}
+
 
 %
 % ---- Bibliography ----
