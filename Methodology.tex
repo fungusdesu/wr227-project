@@ -70,7 +70,13 @@ Next, we split the dataset into training and testing sets, with an 80-20 split. 
 
 \subsection{Modeling}
 
-For this research, we utitlize \texttt{sk\_learn}'s implementations of the following traditional machine learning models: Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, Gaussian Naive Bayes, K-Nearest Neighbors, and Logistic Regression. The parameters for each models are obtained by running \texttt{sk\_learn}'s \texttt{RandomizedSearchCV} on the models and the dataset and presented in the following table:
+\subsubsection{Traditional Machine Learning Models}
+
+In our paper, we utilize seven traditional machine learning models as baselines for comparison with large language models. These models include: Random Forest (RF), Support Vector Machine (SVM), Gradient Boosting (GB), Decision Tree (DT), K-Nearest Neighbors (KNN), Extreme Learning Machine (ELM), and Multi-layer Perceptron (MLP).
+
+The first two models, RF and SVM, are learning methods identified as top classifiers in Delgado et al.'s systematic review of educational data mining \cite{Delgado2014}. The paper also highlights other strong models, such as DT (C5.0 implementation), GB, ELM, and MLP. A review of the OULAD dataset by Alhakbani and Alnassar \cite{Alhakbani2022} also identifies DT (CART implementation) as a top-performing model in detecting at-risk students. Finally, KNN is also included, due to its simplicity, as we intend to explore if the classification task can be effectively solved using a simple distance-based method.
+
+Regarding implementation, all models are run with \texttt{sk\_learn} libraries; for the DT model, we also uses R programming language to implement the C5.0 algorithm, since \texttt{sk\_learn} only provides the CART implementation. We first run a 5-fold cross-validation on the training set to perform hyperparameter tuning for each model. We then select the best hyperparameters based on the average F1-score across folds, and train the final model on the entire training set using these hyperparameters. The selected hyperparameters for each model are summarized in the following table:
 
 \begin{table}[H]
 \centering
@@ -79,26 +85,34 @@ For this research, we utitlize \texttt{sk\_learn}'s implementations of the follo
 \toprule
 \textbf{Model} & \textbf{Hyperparameters} \\
 \midrule
-Random Forest & \texttt{n\_estimators=300}, \texttt{max\_depth=50}, \texttt{min\_samples\_split=5}, \texttt{min\_samples\_leaf=2}, \texttt{max\_features='sqrt'}, \texttt{bootstrap=False} \\
+Random Forest & \texttt{n\_estimators=300}, \texttt{min\_samples\_split=5}, \texttt{min\_samples\_leaf=2}, \texttt{max\_features='sqrt'}, \texttt{max\_depth=50}, \texttt{bootstrap=False} \\
 \addlinespace
-Decision Tree & \texttt{min\_samples\_split=20}, \texttt{min\_samples\_leaf=4}, \texttt{max\_depth=10}, \texttt{criterion='gini'}, \texttt{splitter='best'} \\
+Decision Tree & \texttt{splitter='best'}, \texttt{min\_samples\_split=20}, \texttt{min\_samples\_leaf=4}, \texttt{max\_features=None}, \texttt{max\_depth=10}, \texttt{criterion='gini'} \\
 \addlinespace
-Gradient Boosting & \texttt{n\_estimators=100}, \texttt{subsample=1}, \texttt{learning\_rate=0.2}, \texttt{min\_samples\_split=2}, \texttt{min\_samples\_leaf=4}, \texttt{max\_depth=5}, \texttt{max\_features='auto'} \\
+Support Vector Machine & \texttt{StandardScaler()} + \texttt{SVC(C=0.7847599703514611, class\_weight='balanced', kernel='rbf', gamma='auto')} \\
 \addlinespace
-SVM & \texttt{StandardScaler()} + \texttt{LinearSVC(C=0.785, class\_weight='balanced', max\_iter=5000, dual='auto')} \\
-\addlinespace
-Gaussian NB & \texttt{var\_smoothing=9.22e-12} \\
+Gradient Boosting & \texttt{subsample=1.0}, \texttt{n\_estimators=100}, \texttt{min\_samples\_split=2}, \texttt{min\_samples\_leaf=4}, \texttt{max\_features=None}, \texttt{max\_depth=5}, \texttt{learning\_rate=0.2} \\
 \addlinespace
 K-NN & \texttt{StandardScaler()} + \texttt{KNeighborsClassifier(n\_neighbors=7, weights='uniform', p=1, metric='minkowski', leaf\_size=50)} \\
 \addlinespace
-Logistic Regression & \texttt{StandardScaler()} + \texttt{LogisticRegression(C=126.63801734674021, class\_weight=None, fit\_intercept=True, max\_iter=5000, tol=1e-05, solver='lbfgs')} \\
+Extreme Learning Machine & \texttt{ELMClassifier(n\_neurons=1000, alpha=0.0001, ufunc='relu')} \\
+\addlinespace
+Multi-layer Perceptron & \texttt{MLPClassifier(hidden\_layer\_sizes=(32,), activation='tanh', alpha=0.1, solver='lbfgs', max\_iter=1500, max\_fun=15000)} \\
 \bottomrule
 \end{tabularx}
 \caption{Hyperparameters used for each traditional machine learning model.}
 \label{tab:model_hyperparameters}
 \end{table}
 
-For baseline LLMs, we utilize two models available on Huggin Face: \texttt{qwen-2.5-3b} and \texttt{llama-2-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting. The prompt used is as follows:
+The result of cross-validation is shown in the following figure:
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{code/plots/random_search_cv_py.png}
+    \caption{Cross-validation results for traditional machine learning models.}
+\end{figure}
+\subsubsection{Large Language Models}
+
+For baseline LLMs, we utilize two models available on Huggin Face: \texttt{Qwen-2.5-3b} and \texttt{LlaMa-3-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting. The prompt used is as follows:
 
 \begin{center}
     Put the prompt here.

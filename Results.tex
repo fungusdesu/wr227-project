@@ -1,11 +1,12 @@
 \section{Results}
 
 \subsection{Traditional Predictive Models}
-\begin{figure}
+\begin{figure}[H]
+\centering
 	\includegraphics[width=\textwidth]{code/plots/model_performance.png}
 	\caption{Performance comparison of traditional predictive models}
 \end{figure}
-Various traditional model architectures are implemented. Of particular are Random Forest, Decision Tree, Gradient Boosting, Support Vector Machine, Gaussian Naive Bayes and K-Nearest Neighbors. The performances of each model is measured using plain accuracy, balanced accuracy, and F1 score. The accuracy of a model can be calculated as follows:
+Various traditional model architectures are implemented. The evaluated models are Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, K-Nearest Neighbors, Extreme Learning Machine, and Multi-layer Perceptron. The performance of each model is measured using plain accuracy, balanced accuracy, and F1 score. The accuracy of a model can be calculated as follows:
 \[
 	\text{Accuracy} = \frac{\text{True Positive} + \text{True Negative}}{\text{Total Prediction}}.
 \]
@@ -17,7 +18,7 @@ In addition, the F1 score is also utilized, calculated as the harmonic mean of p
 \[
 	\text{F1 Score} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}.
 \]
-As shown in Fig. 1, Gradient Boosting consistently outperforms other predictive models.
+As shown in Fig. 1, the model performance plot summarizes the comparative results across all evaluated traditional predictive models.
 
 \subsection{Large Language Models}
 \begin{figure}
