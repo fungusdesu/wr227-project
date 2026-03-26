@@ -2,6 +2,11 @@
 \subsection{Interpretation}
 The results highlight immense accuracy of traditional machine learning models, specifically Gradient Boosting. In particular, the machine learning model Gradient Boosting predict the students' final result with a balanced accuracy of just under $0.8$. This suggests that students' access to study materials, as well as study time, greatly affect the students' academic trajectory.
 
-On the other hand, LLMs show a consistently poor performance, achieving a balanced accuracy of no further than $.5$. This is due to the fact that LLMs tend to witness a phenomenon of fallthrough to a default heuristics, most commonly ``Fail'' or ``Pass''. Interestingly, one-shot prompts perform better by a significant margin, but five-shot prompts perform no better than zero-shot, which may indicate overfitting.
+On the other hand, LLMs show a consistently poor performance, achieving a balanced accuracy of no further than $.5$. This is due to the fact that LLMs tend to witness a phenomenon of fallthrough to a default heuristics, most commonly ``Fail'' or ``Pass''. Interestingly, one-shot prompts perform better by a significant margin at, but five-shot prompts perform no better than zero-shot.
 
 From a pedagogical standpoint, our study serves as a rudimentary framework for implementating an early warning system for students. This cements the role of traditional machine learning models for such purpose and illustrates the unreliability of generative LLMs in classification problems.
+
+\subsection{Threats to Validity}
+Both models feed upon the OULAD, which lacks access to external factors that may tamper with students' academic performance. This includes but are not limited to student mental health and sudden students' emergencies, acting as black swans to throw off models' accuracies.
+
+There exists a risk of models overfitting to data in more obsolete academic backgrounds, which reinforces their biases to the more recent education system. Furthermore, the data yielded from the students who are aware that their activities are monitored may reflect a different study pattern than those who are not, which drastically change the models' prediction accuracy.
