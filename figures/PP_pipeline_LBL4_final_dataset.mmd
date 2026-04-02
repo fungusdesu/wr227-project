@@ -1,0 +1,37 @@
+%%{init: {'theme':'base','themeVariables': {
+  'primaryColor':'#ffffff',
+  'primaryTextColor':'#111111',
+  'primaryBorderColor':'#111111',
+  'lineColor':'#111111',
+  'secondaryColor':'#f6f6f6',
+  'tertiaryColor':'#ffffff',
+  'fontFamily':'Times New Roman',
+  'fontSize':'24px'
+}}}%%
+flowchart TB
+    LBL4["Final Dataset"]
+
+    subgraph FinalStage[" "]
+      direction TB
+      JOIN["Merge by student ID"]
+      TRAIN["Training set (SMOTE applied)"]
+      TEST["Test set"]
+    end
+
+    F_INFO["StudentInfo features"] --> JOIN
+    F_PERF["Performance features"] --> JOIN
+    F_BEH["Behavior features"] --> JOIN
+
+    JOIN --> TRAIN
+    JOIN --> TEST
+    LBL4 ~~~ JOIN
+
+    classDef output fill:#ffffff,stroke:#111111,stroke-width:1.4px,color:#111111;
+    classDef process fill:#f6f6f6,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef label fill:transparent,stroke:transparent,color:#111111;
+
+    class F_INFO,F_PERF,F_BEH,TRAIN,TEST output;
+    class JOIN process;
+    class LBL4 label;
+
+    style FinalStage fill:#ffffff,stroke:#111111,stroke-width:1px;

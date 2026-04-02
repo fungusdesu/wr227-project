@@ -1,0 +1,35 @@
+%%{init: {'theme':'base','themeVariables': {
+  'primaryColor':'#ffffff',
+  'primaryTextColor':'#111111',
+  'primaryBorderColor':'#111111',
+  'lineColor':'#111111',
+  'secondaryColor':'#f6f6f6',
+  'tertiaryColor':'#ffffff',
+  'fontFamily':'Times New Roman',
+  'fontSize':'24px'
+}}}%%
+flowchart TB
+    LBL3["Prepared Feature Sets"]
+
+    subgraph OutputsPrep[" "]
+      direction TB
+      F_INFO["StudentInfo features"]
+      F_PERF["Performance features"]
+      F_BEH["Behavior features"]
+    end
+
+    SI_PP["Preprocess studentInfo"] --> F_INFO
+    SA_PP["Preprocess assessment features"] --> F_PERF
+    SV_PP["Preprocess behavior features"] --> F_BEH
+
+    LBL3 ~~~ F_INFO
+
+    classDef process fill:#f6f6f6,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef output fill:#ffffff,stroke:#111111,stroke-width:1.4px,color:#111111;
+    classDef label fill:transparent,stroke:transparent,color:#111111;
+
+    class SI_PP,SA_PP,SV_PP process;
+    class F_INFO,F_PERF,F_BEH output;
+    class LBL3 label;
+
+    style OutputsPrep fill:#ffffff,stroke:#111111,stroke-width:1px;

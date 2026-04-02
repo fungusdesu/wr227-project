@@ -29,6 +29,10 @@ def _refit_models_path() -> Path:
 	return Path(__file__).resolve().parent / 'refit_models_py.joblib'
 
 
+def _results_csv_path() -> Path:
+	return Path(__file__).resolve().parent / 'random_search_results_py.csv'
+
+
 def _picklable_refit_models(refit_models: dict):
 	picklable = {}
 	skipped = []
@@ -214,18 +218,28 @@ def _save_cv_plot(results_df: pd.DataFrame) -> Path:
 
 	plot_df = results_df.dropna(subset=['CV Balanced Accuracy Mean']).copy()
 	plot_df = plot_df.sort_values('CV Balanced Accuracy Mean', ascending=False)
+	if plot_df.empty:
+		raise ValueError('No rows with CV Balanced Accuracy Mean found for plotting.')
+
+	means = plot_df['CV Balanced Accuracy Mean'].astype(float)
+	stds = plot_df['CV Balanced Accuracy Std'].fillna(0.0).astype(float)
+	left = float((means - stds).min())
+	right = float((means + stds).max())
+	margin = max(0.005, (right - left) * 0.15)
+	x_min = max(0.0, left - margin)
+	x_max = min(1.0, right + margin)
 
 	fig, ax = plt.subplots(figsize=(12, 7))
 	ax.barh(
 		plot_df['Model'],
-		plot_df['CV Balanced Accuracy Mean'],
-		xerr=plot_df['CV Balanced Accuracy Std'].fillna(0.0),
+		means,
+		xerr=stds,
 		color='#4C78A8',
 		ecolor='#333333',
 		capsize=4,
 	)
 	ax.invert_yaxis()
-	ax.set_xlim(0, 1)
+	ax.set_xlim(x_min, x_max)
 	ax.set_xlabel('CV Balanced Accuracy')
 	ax.set_title('Random Search CV Performance (Mean ± Std)')
 	ax.grid(axis='x', linestyle='--', alpha=0.4)
@@ -236,48 +250,30 @@ def _save_cv_plot(results_df: pd.DataFrame) -> Path:
 	return plot_path
 
 
-def main():
-	random_state = 69
-	n_iter = 10
-
-	X_train, y_train = _load_data()
-	configs = _search_configs(random_state=random_state)
-
-	results = []
-	refit_models = {}
-	for model_name, (estimator, distributions) in configs.items():
-		print(f'\n--- RandomizedSearchCV: {model_name} ---')
-		result, best_estimator = _run_model_search(
-			model_name=model_name,
-			estimator=estimator,
-			param_distributions=distributions,
-			X_train=X_train,
-			y_train=y_train,
-			n_iter=n_iter,
-			random_state=random_state,
+def _load_existing_results() -> pd.DataFrame:
+	results_path = _results_csv_path()
+	if not results_path.exists():
+		raise FileNotFoundError(
+			f'Existing random search CSV not found at: {results_path}. '
+			'Run the random search once to generate it.'
 		)
 
-		print(f"Best Params: {result['Best Params']}")
-		print(f"CV Balanced Accuracy Mean: {result['CV Balanced Accuracy Mean']:.4f}")
-		print(f"CV Balanced Accuracy Std: {result['CV Balanced Accuracy Std']:.4f}")
-		results.append(result)
-		refit_models[model_name] = best_estimator
+	results_df = pd.read_csv(results_path)
+	required_cols = {'Model', 'CV Balanced Accuracy Mean', 'CV Balanced Accuracy Std'}
+	missing = required_cols - set(results_df.columns)
+	if missing:
+		raise ValueError(f'Missing required columns in {results_path}: {sorted(missing)}')
 
-	results_df = pd.DataFrame(results)
-	print('\n===== Final Summary =====')
+	return results_df
+
+
+def main():
+	results_df = _load_existing_results()
+	print('\n===== Loaded Existing Random Search Results =====')
 	print(results_df[['Model', 'CV Balanced Accuracy Mean', 'CV Balanced Accuracy Std']])
 
-	output_path = Path(__file__).resolve().parent / 'random_search_results_py.csv'
-	results_df.to_csv(output_path, index=False)
 	plot_path = _save_cv_plot(results_df)
-	serializable_models, skipped_models = _picklable_refit_models(refit_models)
-	refit_path = _refit_models_path()
-	joblib.dump(serializable_models, refit_path)
-	print(f'\nSaved full results to: {output_path}')
 	print(f'Saved plot to: {plot_path}')
-	print(f'Saved refit models to: {refit_path}')
-	if skipped_models:
-		print(f'Skipped non-picklable refit models: {skipped_models}')
 
 
 if __name__ == '__main__':

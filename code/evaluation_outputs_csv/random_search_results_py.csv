@@ -1,0 +1,8 @@
+Model,Best Params,CV Balanced Accuracy,CV Balanced Accuracy Mean,CV Balanced Accuracy Std
+Random Forest,"{'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 50, 'bootstrap': False}",0.825209985613115,0.825209985613115,0.0059417028934788795
+Decision Tree,"{'splitter': 'best', 'min_samples_split': 20, 'min_samples_leaf': 4, 'max_features': None, 'max_depth': 10, 'criterion': 'gini'}",0.7610731577959475,0.7610731577959475,0.0071140617658454735
+Support Vector Machine,"{'svc__kernel': 'rbf', 'svc__gamma': 'auto', 'svc__class_weight': 'balanced', 'svc__C': np.float64(0.7847599703514611)}",0.8026340325267369,0.8026340325267369,0.004015464736266335
+Gradient Boosting,"{'subsample': 1.0, 'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 4, 'max_features': None, 'max_depth': 5, 'learning_rate': 0.2}",0.8177268875178813,0.8177268875178813,0.0057951454979972535
+K-Nearest Neighbors,"{'knn__weights': 'uniform', 'knn__p': 1, 'knn__n_neighbors': 7, 'knn__metric': 'minkowski', 'knn__leaf_size': 50}",0.7557888544346947,0.7557888544346947,0.0028509677037530296
+Extreme Learning Machine,"{'elm__ufunc': 'relu', 'elm__n_neurons': 1000, 'elm__alpha': 0.0001}",0.7852157879312804,0.7852157879312804,0.0036846329340889314
+Multi-layer Perceptron,"{'mlpc__solver': 'lbfgs', 'mlpc__max_iter': 1500, 'mlpc__max_fun': 15000, 'mlpc__hidden_layer_sizes': (32,), 'mlpc__alpha': 0.1, 'mlpc__activation': 'tanh'}",0.7721961556893149,0.7721961556893149,0.005465232741957433

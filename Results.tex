@@ -1,10 +1,17 @@
 \section{Results}
 
-\subsection{Traditional Predictive Models}
 \begin{figure}[H]
 \centering
-	\includegraphics[width=\textwidth]{code/plots/model_performance.png}
-	\caption{Performance comparison of traditional predictive models}
+	\includegraphics[width=\textwidth]{code/plots/combined_tradml_llm_performance.png}
+	\caption{Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy.}
+\end{figure}
+
+\subsection{Traditional Predictive Models}
+
+\begin{figure}[H]
+\centering
+	\includegraphics[width=\textwidth]{code/plots/model_performance_py.png}
+	\caption{Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy.}
 \end{figure}
 Various traditional model architectures are implemented. The evaluated models are Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, K-Nearest Neighbors, Extreme Learning Machine, and Multi-layer Perceptron. The performance of each model is measured using plain accuracy, balanced accuracy, and F1 score. The accuracy of a model can be calculated as follows:
 \[
@@ -21,13 +28,14 @@ In addition, the F1 score is also utilized, calculated as the harmonic mean of p
 As shown in Fig. 1, the model performance plot summarizes the comparative results across all evaluated traditional predictive models.
 
 \subsection{Large Language Models}
-\begin{figure}
+\begin{figure}[H]
+	\centering
 	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{code/plots/qwen.png}
+		\includegraphics[width=\textwidth]{code/plots/qwen_metric_technique_comparison.png}
 	\end{minipage}
 	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{code/plots/llama.png}
+		\includegraphics[width=\textwidth]{code/plots/llama_metric_technique_comparison.png}
 	\end{minipage}
-	\caption{Performance comparison of Qwen2.5-3B and Meta-Llama3-9B}
+	\caption{Prompting-technique comparison for Qwen2.5-3B (left) and Meta-Llama3-9B (right), using Macro F1 and Balanced Accuracy.}
 \end{figure}
 We use a modified metric for LLMs---Macro F1. This metric effectively treats each class in a model equally important by taking the mean of the F1 scores of each class. Observe that it performs noticeably worse than the lowest scoring traditional predictive model.

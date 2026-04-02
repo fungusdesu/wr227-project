@@ -1,0 +1,41 @@
+%%{init: {'theme':'base','themeVariables': {
+  'primaryColor':'#ffffff',
+  'primaryTextColor':'#111111',
+  'primaryBorderColor':'#111111',
+  'lineColor':'#111111',
+  'secondaryColor':'#f6f6f6',
+  'tertiaryColor':'#ffffff',
+  'fontFamily':'Times New Roman',
+  'fontSize':'24px'
+}}}%%
+flowchart TB
+    LBL2["Feature Preparation"]
+
+    subgraph FeaturePrep[" "]
+      direction TB
+      SI_PP["Preprocess studentInfo"]
+      SA_AGG["Aggregate by assessment ID"]
+      SA_PP["Preprocess assessment features"]
+      SV_AGG["Aggregate by site ID"]
+      SV_PP["Preprocess behavior features"]
+    end
+
+    SI["studentInfo"] --> SI_PP
+    SA["studentAssessment"] --> SA_AGG
+    A["assessments"] --> SA_AGG
+    SA_AGG --> SA_PP
+    SV["studentVle"] --> SV_AGG
+    V["vle"] --> SV_AGG
+    SV_AGG --> SV_PP
+
+    LBL2 ~~~ SI_PP
+
+    classDef table fill:#ffffff,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef process fill:#f6f6f6,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef label fill:transparent,stroke:transparent,color:#111111;
+
+    class SI,SA,A,SV,V table;
+    class SI_PP,SA_AGG,SA_PP,SV_AGG,SV_PP process;
+    class LBL2 label;
+
+    style FeaturePrep fill:#ffffff,stroke:#111111,stroke-width:1px;

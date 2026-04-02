@@ -18,12 +18,18 @@ The tables outlining these modules are given as follows:
 \begin{table}[H]
     \centering
     \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.18}
     \begin{tabularx}{\linewidth}{|l|l|c|X|}
     \hline
-    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
-    Student Demographics & studentInfo & 32,593 & Demographic information: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{gender}, \texttt{region}, \texttt{highest\_education}, \texttt{imd\_band}, \texttt{age\_band}, \texttt{num\_of\_prev\_attempts}, \texttt{studied\_credits}, \texttt{disability}, \texttt{final\_result} \\ \hline
-    Course Registrations & courses & 22 & Course information: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{length} \\ \hline
-    Registrations & studentRegistration & 32,593 & Registration details: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{date\_registration}, \texttt{date\_unregistration} \\ \hline
+    \textbf{Module} & \textbf{Table} & \textbf{Records} & \textbf{What it contains (main fields)} \\
+    \hline
+    Student Demographics & \texttt{studentInfo} & 32,593 & Student profile and outcome labels: \texttt{id\_student}, demographics (gender, region, education, disability), socio-economic and age bands, prior attempts, studied credits, and \texttt{final\_result}. \\
+    \hline
+    Course Registrations & \texttt{courses} & 22 & Module-presentation metadata: \texttt{code\_module}, \texttt{code\_presentation}, and course \texttt{length}. \\
+    \hline
+    Registrations & \texttt{studentRegistration} & 32,593 & Enrollment timeline per student and presentation: \texttt{id\_student}, \texttt{date\_registration}, and \texttt{date\_unregistration}. \\
+    \hline
     \end{tabularx}
     \caption{OULAD: Student and Course Demographics}
     \label{tab:demographics}
@@ -34,9 +40,11 @@ The tables outlining these modules are given as follows:
 \begin{table}[H]
     \centering
     \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.18}
     \begin{tabularx}{\linewidth}{|l|l|c|X|}
     \hline
-    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
+    \textbf{Module} & \textbf{Table} & \textbf{Records} & \textbf{What it contains (main fields)} \\ \hline
     Assessment Results & assessments & 206 & Assessment structure: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_assessment}, \texttt{assessment\_type}, \texttt{date}, \texttt{weight} \\ \hline
     Assessment Results & studentAssessment & 173,912 & Student performance: \texttt{id\_student}, \texttt{id\_assessment}, \texttt{is\_banked}, \texttt{date\_submitted}, \texttt{score} \\ \hline
     \end{tabularx}
@@ -47,9 +55,11 @@ The tables outlining these modules are given as follows:
 \begin{table}[H]
     \centering
     \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.18}
     \begin{tabularx}{\linewidth}{|l|l|c|X|}
     \hline
-    \textbf{Module} & \textbf{Table Name} & \textbf{Records} & \textbf{Description} \\ \hline
+    \textbf{Module} & \textbf{Table} & \textbf{Records} & \textbf{What it contains (main fields)} \\ \hline
     VLE interactions & interactions & 10,655,280 & Clickstream data: \texttt{code\_module}, \texttt{code\_presentation}, \texttt{id\_student}, \texttt{id\_site}, \texttt{date}, \texttt{sum\_click} \\ \hline
     VLE interactions & vle & 6,364 & VLE resource metadata: \texttt{id\_site}, \texttt{code\_module}, \texttt{code\_presentation}, \texttt{activity\_type}, \texttt{week\_from}, \texttt{week\_to} \\ \hline
     \end{tabularx}
@@ -61,12 +71,29 @@ To correctly and effectively classify the students' final results, preprocessing
 
 \subsubsection{Preprocessing}
 In the figure below, we outline the steps taken to preprocess the OULAD dataset. 
-\begin{center}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figures/PP_pipeline.png}
-		\caption{Preprocessing pipeline for the OULAD dataset}
-	\end{figure}
-\end{center}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL1_input_tables.png}
+    \caption{Preprocessing pipeline (Stage 1): input tables.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL2_feature_preparation.png}
+    \caption{Preprocessing pipeline (Stage 2): feature preparation.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL3_prepared_feature_sets.png}
+    \caption{Preprocessing pipeline (Stage 3): prepared feature sets.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL4_final_dataset.png}
+    \caption{Preprocessing pipeline (Stage 4): final dataset construction.}
+\end{figure}
 
 
 
@@ -100,24 +127,26 @@ For baseline LLMs, we utilize two models available on Huggin Face: \texttt{Qwen-
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{l X}
-\toprule
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
 \textbf{Model} & \textbf{Hyperparameters} \\
-\midrule
+\hline
 Random Forest & \texttt{n\_estimators=300}, \texttt{min\_samples\_split=5}, \texttt{min\_samples\_leaf=2}, \texttt{max\_features='sqrt'}, \texttt{max\_depth=50}, \texttt{bootstrap=False} \\
-\addlinespace
+\hline
 Decision Tree & \texttt{splitter='best'}, \texttt{min\_samples\_split=20}, \texttt{min\_samples\_leaf=4}, \texttt{max\_features=None}, \texttt{max\_depth=10}, \texttt{criterion='gini'} \\
-\addlinespace
+\hline
 Support Vector Machine & \texttt{StandardScaler()} + \texttt{SVC(C=0.7847599703514611, class\_weight='balanced', kernel='rbf', gamma='auto')} \\
-\addlinespace
+\hline
 Gradient Boosting & \texttt{subsample=1.0}, \texttt{n\_estimators=100}, \texttt{min\_samples\_split=2}, \texttt{min\_samples\_leaf=4}, \texttt{max\_features=None}, \texttt{max\_depth=5}, \texttt{learning\_rate=0.2} \\
-\addlinespace
+\hline
 K-NN & \texttt{StandardScaler()} + \texttt{KNeighborsClassifier(n\_neighbors=7, weights='uniform', p=1, metric='minkowski', leaf\_size=50)} \\
-\addlinespace
+\hline
 Extreme Learning Machine & \texttt{ELMClassifier(n\_neurons=1000, alpha=0.0001, ufunc='relu')} \\
-\addlinespace
+\hline
 Multi-layer Perceptron & \texttt{MLPClassifier(hidden\_layer\_sizes=(32,), activation='tanh', alpha=0.1, solver='lbfgs', max\_iter=1500, max\_fun=15000)} \\
-\bottomrule
+\hline
 \end{tabularx}
 \caption{Hyperparameters used for each traditional machine learning model.}
 \label{tab:model_hyperparameters}

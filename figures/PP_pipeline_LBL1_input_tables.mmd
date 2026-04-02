@@ -1,0 +1,31 @@
+%%{init: {'theme':'base','themeVariables': {
+  'primaryColor':'#ffffff',
+  'primaryTextColor':'#111111',
+  'primaryBorderColor':'#111111',
+  'lineColor':'#111111',
+  'secondaryColor':'#f6f6f6',
+  'tertiaryColor':'#ffffff',
+  'fontFamily':'Times New Roman',
+  'fontSize':'24px'
+}}}%%
+flowchart TB
+    LBL1["Input Tables"]
+
+    subgraph Inputs[" "]
+      direction TB
+      SI["studentInfo"]
+      SA["studentAssessment"]
+      A["assessments"]
+      SV["studentVle"]
+      V["vle"]
+    end
+
+    LBL1 ~~~ SI
+
+    classDef table fill:#ffffff,stroke:#111111,stroke-width:1px,color:#111111;
+    classDef label fill:transparent,stroke:transparent,color:#111111;
+
+    class SI,SA,A,SV,V table;
+    class LBL1 label;
+
+    style Inputs fill:#ffffff,stroke:#111111,stroke-width:1px;

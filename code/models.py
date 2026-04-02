@@ -45,6 +45,10 @@ def _refit_models_path():
     return path.Path(__file__).resolve().parent / 'refit_models_py.joblib'
 
 
+def _model_results_path():
+    return path.Path(__file__).resolve().parent / 'model_performance_results_py.csv'
+
+
 def _load_refit_models():
     refit_path = _refit_models_path()
     if not refit_path.exists():
@@ -142,18 +146,18 @@ def evaluate_model(model_name, model, X_test, y_test, results):
 
     test_accuracy = accuracy_score(y_test, y_pred)
     test_balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
-    test_f1 = f1_score(y_test, y_pred, average='weighted')
+    test_f1 = f1_score(y_test, y_pred, average='macro')
 
     print(f'{model_name} Test Accuracy: {test_accuracy:.4f}')
-    print(f'{model_name} Test Balanced Accuracy: {test_balanced_accuracy:.4f}')
-    print(f'{model_name} Test F1 Score: {test_f1:.4f}')
+    print(f'{model_name} Balanced Accuracy: {test_balanced_accuracy:.4f}')
+    print(f'{model_name} Macro F1: {test_f1:.4f}')
     print()
 
     results.append({
         'Model': model_name,
         'Test Accuracy': test_accuracy,
-        'Test Balanced Accuracy': test_balanced_accuracy,
-        'Test F1 Score': test_f1
+        'Balanced Accuracy': test_balanced_accuracy,
+        'Macro F1': test_f1
     })
 
 def decision_tree(X_test, y_test, results, tuned_params):
@@ -221,16 +225,30 @@ def ELM(X_test, y_test, results, tuned_params):
 def plot_results(results):
     results_df = pd.DataFrame(results)
 
+    metric_cols = ['Macro F1', 'Balanced Accuracy']
+    metric_values = results_df[metric_cols].to_numpy().ravel()
+    finite_vals = metric_values[np.isfinite(metric_values)]
+    if finite_vals.size == 0:
+        y_min, y_max = 0.0, 1.0
+    else:
+        min_val = float(np.min(finite_vals))
+        max_val = float(np.max(finite_vals))
+        if min_val == max_val:
+            padding = 0.02
+        else:
+            padding = max(0.01, (max_val - min_val) * 0.2)
+        y_min = max(0.0, min_val - padding)
+        y_max = min(1.0, max_val + padding)
+
     x = np.arange(len(results_df))
-    width = 0.25
+    width = 0.35
 
     plt.figure(figsize=(12, 6))
-    plt.bar(x - width, results_df['Test Accuracy'], width, label='Test Accuracy')
-    plt.bar(x, results_df['Test Balanced Accuracy'], width, label='Test Balanced Accuracy')
-    plt.bar(x + width, results_df['Test F1 Score'], width, label='Test F1 Score')
+    plt.bar(x - width / 2, results_df['Macro F1'], width, label='F1')
+    plt.bar(x + width / 2, results_df['Balanced Accuracy'], width, label='Balanced Accuracy')
 
     plt.xticks(x, results_df['Model'], rotation=20, ha='right')
-    plt.ylim(0, 1)
+    plt.ylim(y_min, y_max)
     plt.ylabel('Score')
     plt.title('Model Performance Comparison')
     plt.legend()
@@ -241,6 +259,13 @@ def plot_results(results):
     plt.show()
 
     print(f'Plot saved to: {output_path}')
+
+
+def save_results_csv(results):
+    results_df = pd.DataFrame(results)
+    output_path = _model_results_path()
+    results_df.to_csv(output_path, index=False)
+    print(f'Results CSV saved to: {output_path}')
 
 
 def __main__():
@@ -280,6 +305,7 @@ def __main__():
             continue
         evaluate_model(display_name, refit_models[model_key], X_test, y_test, results)
 
+    save_results_csv(results)
     plot_results(results)
 
 
