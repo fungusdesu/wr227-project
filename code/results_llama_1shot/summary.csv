@@ -1,0 +1,2 @@
+run_label,correct,total,accuracy,macro_f1,balanced_accuracy,invalid_predictions
+meta-llama-3-8b-instruct,2525,6519,0.38732934499156313,0.39186189003934335,0.508627102908759,0
