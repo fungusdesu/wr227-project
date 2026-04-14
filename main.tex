@@ -2,7 +2,7 @@
 % LLNCS macro package for Springer Computer Science proceedings;
 % Version 2.21 of 2022/01/12
 %
-\documentclass[runningheads]{llncs}
+\documentclass[runningheads, 10pt]{llncs}
 %
 \usepackage[T1]{fontenc}
 % T1 fonts will be used to generate the final print and online PDFs,
@@ -17,6 +17,7 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{listings}
+\usepackage{multicol}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
 \lstdefinestyle{custompython}{
@@ -77,6 +78,8 @@ In this paper, we compare the performance of Large Language Models (LLMs) and tr
 %
 %
 \newpage
+
+\begin{multicols}{2}
 \input{Introduction.tex}
 \input{Background.tex}
 \input{RelatedWorks.tex}
@@ -85,6 +88,7 @@ In this paper, we compare the performance of Large Language Models (LLMs) and tr
 \input{Results.tex}
 \input{Discussion.tex}
 \input{Conclusion.tex}
+\end{multicols}
 
 
 %

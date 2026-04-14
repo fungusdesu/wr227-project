@@ -13,7 +13,7 @@ We utilized a dataset named Open University Learning Analytics dataset (hereby r
     \item[VLE interactions:] This module records the students' interactions with the Virtual Learning Environment (VLE), including the number of clicks on various pages and resources. It also includes the dates of these interactions, which can be used to analyze engagement patterns over time. This module also provides information on the resources in the VLE.
 \end{description}
 
-The tables outlining these modules are given as follows:
+\end{multicols}
 
 \begin{table}[H]
     \centering
@@ -34,8 +34,6 @@ The tables outlining these modules are given as follows:
     \caption{OULAD: Student and Course Demographics}
     \label{tab:demographics}
 \end{table}
-
-\newpage
 
 \begin{table}[H]
     \centering
@@ -67,47 +65,46 @@ The tables outlining these modules are given as follows:
     \label{tab:vle}
 \end{table}
 
+\begin{multicols}{2}
 To correctly and effectively classify the students' final results, preprocessing must be done to merge the tables and create a single table containing all the features, keyed according to the \texttt{id\_student} column. In the next subsection, we describe the preprocessing steps taken to achieve this.
-
-\subsubsection{Preprocessing}
-In the figure below, we outline the steps taken to preprocess the OULAD dataset. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL1_input_tables.png}
-    \caption{Preprocessing pipeline (Stage 1): input tables.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL2_feature_preparation.png}
-    \caption{Preprocessing pipeline (Stage 2): feature preparation.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL3_prepared_feature_sets.png}
-    \caption{Preprocessing pipeline (Stage 3): prepared feature sets.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL4_final_dataset.png}
-    \caption{Preprocessing pipeline (Stage 4): final dataset construction.}
-\end{figure}
-
-
 
 We divide the tables into three groups: background (studentInfo), performance (studentAssessment and assessments), and behavior (studentVle, vle, and assessments for cutoff construction). We thus perform the following preprocessing tasks on each group as follows:
 
 \begin{description}
     \item[Background:] We first perform one-hot encoding on the categorical features in the \texttt{studentInfo} table, which include students' gender, region, highest education and disability status. For age and IMD bands, we perform ordinal encoding, as these features have an inherent order.
-    \item[Performance:] We first merge the \texttt{studentAssessment} and \texttt{assessments} tables on \texttt{id\_assessment}. Missing due dates and scores are explicitly tracked using binary indicators (\texttt{has\_due\_date} and \texttt{score\_missing}), and missing values are imputed using the median. We then engineer timing features from submission behavior, including \texttt{submission\_delay}, late/early flags, and a capped delay variable based on the 1st and 99th percentiles to reduce outlier effects. In addition, we compute weighted performance (\texttt{weighted\_score}) using assessment weights and its min-max normalized version. Finally, we aggregate all assessment records at the student-module-presentation level (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}) to produce summary statistics (counts, central tendency, variability, weighted-score totals, lateness ratios, delay average, and missingness ratios), and append assessment-type frequency features via a pivot table.
+    \item[Performance:] We first merge the table \texttt{studentAssessment} and the table \texttt{assessments} on \texttt{id\_assessment}. Missing due dates and scores are explicitly tracked using binary indicators (\texttt{has\_due\_date} and \texttt{score\_missing}), and missing values are imputed using the median. We then engineer timing features from submission behavior, including \texttt{submission\_delay}, late/early flags, and a capped delay variable based on the 1st and 99th percentiles to reduce outlier effects. In addition, we compute weighted performance (\texttt{weighted\_score}) using assessment weights and its min-max normalized version. Finally, we aggregate all assessment records at the student-module-presentation level (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}) to produce summary statistics (counts, central tendency, variability, weighted-score totals, lateness ratios, delay average, and missingness ratios), and append assessment-type frequency features via a pivot table.
     \item[Behavior:] To construct behavior features from VLE interactions, we first derive a module-presentation cutoff date as the latest assessment date and keep only clicks that occur on or before this cutoff, preventing post-assessment leakage. We then merge \texttt{studentVle} with \texttt{vle} to attach \texttt{activity\_type} for each \texttt{id\_site} (with missing types labeled as unknown). Next, we aggregate \texttt{sum\_click} values per student-module-presentation and activity type, and pivot them into wide features (e.g., \texttt{clicks\_forum}, \texttt{clicks\_resource}). Because interactions are processed in chunks for scalability, we finally sum partial chunk-level results to obtain one behavior-feature row per (\texttt{id\_student}, \texttt{code\_module}, \texttt{code\_presentation}).
 \end{description}
 
 After preprocessing, we aggregate three groups of features, using \texttt{student\_id} as the key, to create the final dataset for modeling. This dataset contains 32,593 records and 72 features, including the students' ID and their final results. The final results are categorized into four classes: \texttt{Distinction}, \texttt{Pass}, \texttt{Fail}, and \texttt{Withdrawn}. 
 
 Next, we split the dataset into training and testing sets, with an 80-20 split. We use \texttt{sk\_learn}'s \texttt{SMOTE} to address class imbalance in the training set, which is a common issue in educational datasets where certain outcomes (e.g., withdrawal) may be more prevalent than others. This  increases the size of the train set to 39,556 records, which raises the total dataset size to 46,076 records.
+
+\end{multicols}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL1_input_tables.png}
+    \caption{Preprocessing pipeline (Stage 1): input tables.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL2_feature_preparation.png}
+    \caption{Preprocessing pipeline (Stage 2): feature preparation.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL3_prepared_feature_sets.png}
+    \caption{Preprocessing pipeline (Stage 3): prepared feature sets.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/PP_pipeline_LBL4_final_dataset.png}
+    \caption{Preprocessing pipeline (Stage 4): final dataset construction.}
+\end{figure}
+\begin{multicols}{2}
 
 \subsection{Modeling}
 
@@ -122,8 +119,8 @@ Regarding implementation, all models are run with \texttt{sk\_learn} libraries; 
 \subsubsection{Large Language Models}
 
 For baseline LLMs, we utilize two models available on Huggin Face: \texttt{Qwen-2.5-3b} and \texttt{LlaMa-3-8b}. The models are not fine-tuned and was prompted to perform the classification task with zero-shot prompting.
-\newpage
 
+\end{multicols}
 \begin{table}[H]
 \centering
 \small
@@ -201,4 +198,4 @@ def build_prompt(
 
     return "\n".join(parts)
 \end{lstlisting}
-
+\begin{multicols}{2}

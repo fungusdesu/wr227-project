@@ -1,29 +1,33 @@
 \section{Results}
 
+\end{multicols}
+	
 \begin{figure}[H]
 \centering
 	\includegraphics[width=\textwidth]{code/plots/combined_tradml_llm_performance.png}
 	\caption{Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy.}
 \end{figure}
 
-\subsection{Traditional Predictive Models}
-
 \begin{figure}[H]
 \centering
 	\includegraphics[width=\textwidth]{code/plots/model_performance_py.png}
 	\caption{Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy.}
 \end{figure}
-Various traditional model architectures are implemented. The evaluated models are Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, K-Nearest Neighbors, Extreme Learning Machine, and Multi-layer Perceptron. The performance of each model is measured using plain accuracy, balanced accuracy, and F1 score. The accuracy of a model can be calculated as follows:
+
+\begin{multicols}{2}
+
+\subsection{Traditional Predictive Models}
+Various traditional model architectures are implemented. The evaluated models are Random Forest, Decision Tree, Support Vector Machine, Gradient Boosting, K-Nearest Neighbors, Extreme Learning Machine, and Multi-layer Perceptron. The performance of each model is measured using plain accuracy, balanced accuracy, and F1 score. The accuracy of a model can be calculated as
 \[
-	\text{Accuracy} = \frac{\text{True Positive} + \text{True Negative}}{\text{Total Prediction}}.
+	\frac{\text{True Positive} + \text{True Negative}}{\text{Total Prediction}}.
 \]
 It is an intuitive measure of how correct the model predictions are, but falls short when the given dataset is imbalanced. To mitigate this issue, the balanced accuracy is preferred:
 \[
-	\text{Balanced Accuracy} = \frac{\text{Sensitivity} + \text{Specificity}}{2}.
+	\frac{\text{Sensitivity} + \text{Specificity}}{2}.
 \]
 In addition, the F1 score is also utilized, calculated as the harmonic mean of precision and recall:
 \[
-	\text{F1 Score} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}.
+	\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}.
 \]
 As shown in Fig. 1, the model performance plot summarizes the comparative results across all evaluated traditional predictive models.
 
