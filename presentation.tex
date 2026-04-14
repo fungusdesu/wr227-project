@@ -265,24 +265,24 @@ VLE Interactions & Clickstream data (sum\_click per site) & 10{,}655{,}280 \\
 \vspace{0.3cm}
 \begin{table}[h]
 \centering
-\small
-\begin{tabular}{@{}lcc@{}}
+\scriptsize
+\begin{tabular}{@{}lccc@{}}
 \toprule
-\textbf{Model} & \textbf{Macro F1} & \textbf{Balanced Accuracy} \\
+\textbf{Model} & \textbf{Test Accuracy} & \textbf{Balanced Accuracy} & \textbf{Macro F1} \\
 \midrule
-Gradient Boosting & \textbf{$\sim$0.72} & \textbf{$\sim$0.80} \\
-Random Forest & $\sim$0.72 & $\sim$0.78 \\
-Decision Tree & $\sim$0.74 & $\sim$0.76 \\
-Support Vector Machine & $\sim$0.64 & $\sim$0.68 \\
-K-Nearest Neighbors & $\sim$0.60 & $\sim$0.60 \\
-MLP Classifier & $\sim$0.63 & $\sim$0.67 \\
-ELM Classifier & $\sim$0.63 & $\sim$0.66 \\
+Decision Tree & 0.7188 & 0.6850 & 0.6752 \\
+Random Forest & 0.7612 & \textbf{0.7193} & 0.7199 \\
+Gradient Boosting & \textbf{0.7647} & 0.7178 & \textbf{0.7220} \\
+Support Vector Machine & 0.7400 & 0.6354 & 0.6524 \\
+K-Nearest Neighbors & 0.6872 & 0.5954 & 0.6006 \\
+MLP Classifier & 0.7274 & 0.6760 & 0.6785 \\
+ELM Classifier & 0.7289 & 0.6300 & 0.6448 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \vspace{0.2cm}
-\textbf{Top performers:} Gradient Boosting and Random Forest dominate on both metrics.
+\textbf{Top performers:} Gradient Boosting leads in test accuracy and Macro F1, while Random Forest is best on balanced accuracy.
 
 CV results confirm RF and GB have highest mean balanced accuracy ($\sim$0.82--0.84) with low variance.
 \end{frame}
@@ -296,18 +296,18 @@ CV results confirm RF and GB have highest mean balanced accuracy ($\sim$0.82--0.
 \begin{column}{0.5\textwidth}
 \textbf{Qwen-2.5-3B}
 \begin{itemize}
-    \item 0-shot: Macro F1 $\approx$ 20\%, Bal.\ Acc.\ $\approx$ 25\%
-    \item 1-shot: Macro F1 $\approx$ 40--45\%, Bal.\ Acc.\ $\approx$ 42\%
-    \item 5-shot: Macro F1 $\approx$ 20\%, Bal.\ Acc.\ $\approx$ 25\%
+    \item 0-shot: Macro F1 = 0.2178, Bal.\ Acc.\ = 0.2970
+    \item 1-shot: Macro F1 = 0.3867, Bal.\ Acc.\ = 0.5621
+    \item 5-shot: Macro F1 = 0.3056, Bal.\ Acc.\ = 0.3773
 \end{itemize}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \textbf{LLaMA-3-8B}
 \begin{itemize}
-    \item 0-shot: Macro F1 $\approx$ 25\%, Bal.\ Acc.\ $\approx$ 25\%
-    \item 1-shot: Macro F1 $\approx$ 50\%, Bal.\ Acc.\ $\approx$ 50\%
-    \item 5-shot: Macro F1 $\approx$ 25\%, Bal.\ Acc.\ $\approx$ 25\%
+    \item 0-shot: Macro F1 = 0.2802, Bal.\ Acc.\ = 0.3414
+    \item 1-shot: Macro F1 = 0.3919, Bal.\ Acc.\ = 0.5086
+    \item 5-shot: Macro F1 = 0.4942, Bal.\ Acc.\ = 0.4811
 \end{itemize}
 \end{column}
 \end{columns}
@@ -315,9 +315,9 @@ CV results confirm RF and GB have highest mean balanced accuracy ($\sim$0.82--0.
 \vspace{0.4cm}
 \textbf{Key observations:}
 \begin{itemize}
-    \item All LLM results $<$ 50\% balanced accuracy -- worse than every traditional model
-    \item 1-shot outperforms 0-shot and 5-shot significantly
-    \item 5-shot $\approx$ 0-shot: more examples \textbf{do not help}; LLMs fall through to default heuristics (e.g., always predicting ``Fail'' or ``Pass'')
+    \item All LLM results remain below traditional ML on balanced accuracy and Macro F1
+    \item 1-shot gives the best balanced accuracy for both models (Qwen: 0.5621, LLaMA: 0.5086)
+    \item LLaMA benefits from 5-shot in Macro F1 (0.4942), while Qwen peaks at 1-shot
 \end{itemize}
 \end{frame}
 
