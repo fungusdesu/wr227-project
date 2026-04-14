@@ -1,4 +1,7 @@
-folder,model,technique,n_samples,accuracy,balanced_accuracy,f1
-results_llama_1shot,llama,1shot,6519,0.38732934499156313,0.5086271029087589,0.39186189003934335
-results_qwen_1shot,qwen,1shot,6519,0.266912103083295,0.29704483029733064,0.21781275312355303
-results_qwen_5shot,qwen,5shot,6519,0.3227488878662372,0.3773644600344162,0.30559296683303666
+folder,model,technique,n_samples,balanced_accuracy,f1
+results_qwen_0shot,qwen,0shot,6519,0.2970,0.2178
+results_qwen_1shot,qwen,1shot,6519,0.5621,0.3867
+results_qwen_5shot,qwen,5shot,6519,0.3773,0.3056
+results_llama_0shot,llama,0shot,6519,0.3414,0.2802
+results_llama_1shot,llama,1shot,6519,0.5086,0.3919
+results_llama_5shot,llama,5shot,6519,0.4942,0.4811
