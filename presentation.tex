@@ -1,0 +1,369 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Custom colors
+\definecolor{accent}{RGB}{0,90,160}
+\definecolor{darkgray}{RGB}{60,60,60}
+\setbeamercolor{title}{fg=white,bg=accent}
+\setbeamercolor{frametitle}{fg=white,bg=accent}
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{block title}{bg=accent,fg=white}
+
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\title{LLMs vs.\ Traditional Models\\in Complex Classification}
+\subtitle{A Comparison on Student Outcome Prediction}
+\author{Thien-Lac Quach \and Ton-Minh-Ky Tran}
+\institute{Faculty of Information Technology, University of Science\\Vietnam National University, Ho Chi Minh City}
+\date{}
+
+\begin{document}
+
+% ---- Slide 1: Title ----
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ---- Slide 2: Motivation ----
+\begin{frame}{Motivation}
+\textbf{Context:} LLMs have revolutionized NLP, but their performance on structured tabular classification tasks is underexplored. Traditional ML models (e.g., Random Forest, Gradient Boosting), on the other hand, have been the backbone of classification tasks in various domains, including education.
+
+\vspace{0.4cm}
+
+$\implies $Hypothesis: LLMs are not designed for classification tasks, especially with structured data, and may underperform compared to traditional ML models.
+\end{frame}
+
+% ---- Slide 3: Problem Overview ----
+\begin{frame}{Problem Overview}
+\textbf{Question:} Can LLMs effective perform complex classification tasks on structured data as well as traditional ML models?
+
+\vspace{0.4cm}
+
+\textbf{Problem:} Benchmarking LLMs (Qwen-2.5-3B, LLaMA-3-8B) against seven traditional ML models on a large, multiclass dataset.
+\begin{itemize}
+\item \textbf{Task:} Predict student outcomes (Distinction, Pass, Fail, Withdrawn) based on demographics, performance, and behavior features from the dataset.
+
+\item \textbf{Input:} 72 structured features (e.g., study time, assessment scores, VLE interactions).
+
+\item\textbf{Output:} Predicted class label for each student record.
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{Evaluation:} Macro F1-score and Balanced Accuracy on a held-out test set.
+
+\textbf{Key Finding:} LLMs heavily underperform traditional models on this structured classification task.
+\end{frame}
+
+% ---- Slide 3: Background -- Traditional ML (Part 1) ----
+\begin{frame}{Background: Traditional ML Models (I)}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Random Forest (RF)}
+\begin{itemize}
+    \item Ensemble of decision trees; each grown via random vector $\Theta$
+    \item Final prediction by majority vote
+    \item Robust to overfitting; handles high-dimensional data
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Support Vector Machine (SVM)}
+\begin{itemize}
+    \item Finds optimal separating hyperplane maximizing margin
+    \item Kernel trick (RBF) for non-linear boundaries
+    \item Effective in high-dimensional feature spaces
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Gradient Boosting (GB)}
+\begin{itemize}
+    \item Sequential ensemble of weak learners (trees)
+    \item Each tree corrects residuals of predecessors
+    \item Final prediction: $F_M(x_i) = \sum_{m=1}^{M} \nu T_m(x_i)$
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{K-Nearest Neighbors (KNN)}
+\begin{itemize}
+    \item Non-parametric; classifies by majority of $k$ nearest neighbors
+    \item Distance metric: Euclidean (default)
+    \item Error converges to $\leq 2\times$ Bayes error rate as $n \to \infty$
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Slide 4: Background -- Traditional ML (Part 2) + LLMs ----
+\begin{frame}{Background: Traditional ML Models (II) \& LLMs}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Extreme Learning Machine (ELM)}
+\begin{itemize}
+    \item Single-hidden-layer feedforward network
+    \item Random input weights; output weights solved analytically via Moore--Penrose inverse
+    \item Fast training; competitive with SVM
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Multilayer Perceptron (MLP)}
+\begin{itemize}
+    \item $\geq 3$ layers (input, hidden, output)
+    \item Learns via backpropagation \& gradient descent
+    \item Activation: sigmoid or ReLU
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Large Language Models}
+\begin{itemize}
+    \item Transformer architecture (Vaswani et al., 2017); self-attention mechanism
+    \item Pre-trained on massive corpora, then fine-tuned
+    \item Excel at NLP; generalize across tasks without task-specific training
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Models chosen:}
+\begin{itemize}
+    \item \textbf{Qwen-2.5-3B} (Alibaba) -- optimized for structured I/O, coding, math
+    \item \textbf{LLaMA-3-8B} (Meta) -- optimized Transformer backbone, RLHF-aligned
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Slide 5: Dataset ----
+\begin{frame}{Dataset: OULAD}
+\textbf{Open University Learning Analytics Dataset} -- 32{,}593 student records, 20 raw features.
+
+\vspace{0.3cm}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}llr@{}}
+\toprule
+\textbf{Module} & \textbf{Key Contents} & \textbf{Records} \\
+\midrule
+Student Demographics & Gender, region, education, IMD, age & 32{,}593 \\
+Course Registrations & Module/presentation codes, length & 22 \\
+Assessment Results & TMA/CMA/Exam scores, weights & 173{,}912 \\
+VLE Interactions & Clickstream data (sum\_click per site) & 10{,}655{,}280 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.3cm}
+\textbf{Target variable:} \texttt{final\_result} $\in$ \{Distinction, Pass, Fail, Withdrawn\}
+
+\vspace{0.2cm}
+\textbf{Split:} 80/20 train/test; SMOTE (ADASYN) applied to training set $\rightarrow$ 39{,}556 train records.
+\end{frame}
+
+% ---- Slide 6: Preprocessing Pipeline ----
+\begin{frame}{Preprocessing Pipeline}
+\textbf{Three feature groups} merged on \texttt{student\_id}:
+
+\vspace{0.3cm}
+\begin{columns}[T]
+\begin{column}{0.33\textwidth}
+\textbf{1. Background}
+\begin{itemize}
+    \item One-hot: gender, region, education, disability
+    \item Ordinal: age band, IMD band
+\end{itemize}
+\end{column}
+
+\begin{column}{0.33\textwidth}
+\textbf{2. Performance}
+\begin{itemize}
+    \item Merge assessments on \texttt{id\_assessment}
+    \item Impute missing scores (median)
+    \item Engineer: submission delay, late/early flags, weighted score
+    \item Aggregate per student
+\end{itemize}
+\end{column}
+
+\begin{column}{0.33\textwidth}
+\textbf{3. Behavior}
+\begin{itemize}
+    \item Cutoff: latest assessment date (prevent leakage)
+    \item Merge VLE clicks with activity type
+    \item Pivot into wide features (e.g., \texttt{clicks\_forum})
+    \item Chunk-level aggregation
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\textbf{Final dataset:} 32{,}593 records $\times$ 72 features (including ID and label).
+\end{frame}
+
+% ---- Slide 7: Methodology -- Traditional Models ----
+\begin{frame}{Methodology: Traditional Models}
+\textbf{Seven models evaluated:} RF, SVM, GB, DT (CART + C5.0), KNN, ELM, MLP.
+
+\vspace{0.3cm}
+\textbf{Selection rationale:}
+\begin{itemize}
+    \item RF \& SVM: top classifiers per Delgado et al.'s systematic review
+    \item DT, GB, ELM, MLP: strong performers in educational data mining literature
+    \item KNN: baseline to test if simple distance-based methods suffice
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Training procedure:}
+\begin{enumerate}
+    \item 5-fold cross-validation on training set for hyperparameter tuning
+    \item Select best hyperparameters by average F1-score across folds
+    \item Train final model on full training set with selected hyperparameters
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{Implementation:} \texttt{scikit-learn} (Python); C5.0 via R.
+\end{frame}
+
+% ---- Slide 8: Methodology -- LLMs ----
+\begin{frame}{Methodology: LLMs \& Prompting}
+\textbf{Models:} Qwen-2.5-3B and LLaMA-3-8B (from Hugging Face), \textbf{no fine-tuning}.
+
+\vspace{0.3cm}
+\textbf{Prompting techniques:}
+\begin{itemize}
+    \item \textbf{Zero-shot:} Classify directly from feature description alone
+    \item \textbf{One-shot:} One labeled example provided before the query
+    \item \textbf{Five-shot:} Five labeled examples provided before the query
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Prompt structure:}
+\begin{enumerate}
+    \item Base instruction + allowed labels (Distinction, Pass, Withdrawn, Fail)
+    \item Few-shot examples (if any): student record JSON $\rightarrow$ \texttt{LABEL=<class>}
+    \item Target student record
+    \item Strict output format: \texttt{LABEL=<one of four classes>}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{Key constraint:} LLMs must infer patterns from examples only -- no gradient-based learning on training data.
+\end{frame}
+
+% ---- Slide 9: Results -- Traditional Models ----
+\begin{frame}{Results: Traditional ML Models}
+\textbf{Metrics:} Accuracy, Balanced Accuracy, Macro F1.
+
+\vspace{0.3cm}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Model} & \textbf{Macro F1} & \textbf{Balanced Accuracy} \\
+\midrule
+Gradient Boosting & \textbf{$\sim$0.72} & \textbf{$\sim$0.80} \\
+Random Forest & $\sim$0.72 & $\sim$0.78 \\
+Decision Tree & $\sim$0.74 & $\sim$0.76 \\
+Support Vector Machine & $\sim$0.64 & $\sim$0.68 \\
+K-Nearest Neighbors & $\sim$0.60 & $\sim$0.60 \\
+MLP Classifier & $\sim$0.63 & $\sim$0.67 \\
+ELM Classifier & $\sim$0.63 & $\sim$0.66 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
+\textbf{Top performers:} Gradient Boosting and Random Forest dominate on both metrics.
+
+CV results confirm RF and GB have highest mean balanced accuracy ($\sim$0.82--0.84) with low variance.
+\end{frame}
+
+% ---- Slide 10: Results -- LLMs ----
+\begin{frame}{Results: Large Language Models}
+\textbf{Metric:} Macro F1 and Balanced Accuracy.
+
+\vspace{0.3cm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Qwen-2.5-3B}
+\begin{itemize}
+    \item 0-shot: Macro F1 $\approx$ 20\%, Bal.\ Acc.\ $\approx$ 25\%
+    \item 1-shot: Macro F1 $\approx$ 40--45\%, Bal.\ Acc.\ $\approx$ 42\%
+    \item 5-shot: Macro F1 $\approx$ 20\%, Bal.\ Acc.\ $\approx$ 25\%
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{LLaMA-3-8B}
+\begin{itemize}
+    \item 0-shot: Macro F1 $\approx$ 25\%, Bal.\ Acc.\ $\approx$ 25\%
+    \item 1-shot: Macro F1 $\approx$ 50\%, Bal.\ Acc.\ $\approx$ 50\%
+    \item 5-shot: Macro F1 $\approx$ 25\%, Bal.\ Acc.\ $\approx$ 25\%
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\textbf{Key observations:}
+\begin{itemize}
+    \item All LLM results $<$ 50\% balanced accuracy -- worse than every traditional model
+    \item 1-shot outperforms 0-shot and 5-shot significantly
+    \item 5-shot $\approx$ 0-shot: more examples \textbf{do not help}; LLMs fall through to default heuristics (e.g., always predicting ``Fail'' or ``Pass'')
+\end{itemize}
+\end{frame}
+
+% ---- Slide 11: Discussion & Threats ----
+\begin{frame}{Discussion \& Threats to Validity}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\textbf{Interpretation}
+\begin{itemize}
+    \item Traditional models (esp.\ GB) effectively exploit structured features -- study materials access and study time are strong predictors
+    \item LLMs suffer from \textbf{fallthrough to default heuristics}: they collapse predictions to one or two dominant classes
+    \item General-purpose LLMs are not suited for structured tabular classification without fine-tuning
+    \item Findings support traditional ML as the reliable choice for early-warning systems in education
+\end{itemize}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{Threats to Validity}
+\begin{itemize}
+    \item OULAD lacks external factors: student mental health, personal emergencies (``black swans'')
+    \item Risk of overfitting to outdated academic contexts; bias toward past education systems
+    \item \textbf{Hawthorne effect:} students aware of monitoring may alter behavior, distorting predictions
+    \item LLM evaluation limited to two small-parameter models with basic prompting
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Slide 12: Conclusion & Future Work ----
+\begin{frame}{Conclusion \& Future Work}
+\textbf{Conclusion:}
+\begin{itemize}
+    \item Traditional ML models (RF, GB) significantly outperform LLMs on structured student outcome classification
+    \item LLMs (Qwen-2.5-3B, LLaMA-3-8B) achieve $<$50\% balanced accuracy vs.\ $\sim$80\% for GB
+    \item LLMs' NLP strength does not transfer to tabular classification tasks
+    \item Result reinforces traditional ML as the primary vessel for classification in educational data mining
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{Future Work:}
+\begin{itemize}
+    \item Refine prompting strategies (chain-of-thought, retrieval-augmented)
+    \item Test larger, more capable LLMs (70B+ parameter models)
+    \item Incorporate richer socio-economic data and cross-discipline datasets
+    \item Explore fine-tuning LLMs on domain-specific tabular data
+\end{itemize}
+\end{frame}
+
+\end{document}
