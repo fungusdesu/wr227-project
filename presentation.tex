@@ -143,6 +143,15 @@ $\implies $Hypothesis: LLMs are not designed for classification tasks, especiall
 \end{columns}
 \end{frame}
 
+\begin{frame}{Related Work}
+	\textbf{Data aggregation:}
+	Relevant features (e.g., study hours, extracurriculars, sleep, mock exams) are selected using information gain (Alias 2024, Suleiman 2024), with data collected via online surveys (e.g., Google Forms).
+	
+	\vspace{0.3cm}
+	\textbf{Performance metrics:}
+	Evaluation uses accuracy, precision, recall, F1-score, and AUC-ROC (Alias 2024, Zaky 2023, Brzezinski 2017, Yang 2017). To address class imbalance, SMOTE and ADASYN generate synthetic minority samples, improving model performance (Chawla 2011, Elreedy 2019).
+\end{frame}
+
 % ---- Slide 5: Dataset ----
 \begin{frame}{Dataset: OULAD}
 \textbf{Open University Learning Analytics Dataset} -- 32{,}593 student records, 20 raw features.
@@ -235,7 +244,7 @@ VLE Interactions & Clickstream data (sum\_click per site) & 10{,}655{,}280 \\
 
 % ---- Slide 8: Methodology -- LLMs ----
 \begin{frame}{Methodology: LLMs \& Prompting}
-\textbf{Models:} Qwen-2.5-3B and LLaMA-3-8B (from Hugging Face), \textbf{no fine-tuning}.
+\textbf{Models:} Qwen-2.5-3B and LLaMA-3-8B (from Hugging Face).
 
 \vspace{0.3cm}
 \textbf{Prompting techniques:}
