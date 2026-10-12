@@ -265,6 +265,15 @@ INPUT .\Background.tex
 INPUT .\Background.tex
 INPUT Background.tex
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1000.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib7.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib5.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0700.tfm
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0500.tfm
 INPUT .\RelatedWorks.tex
@@ -382,6 +391,8 @@ INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
+INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\MIKE\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb

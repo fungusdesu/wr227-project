@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.5.3)  12 MAY 2026 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.5.3)  15 MAY 2026 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -825,59 +825,21 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 
 [1
 
-{C:/Users/MIKE/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Introduction.tex [2]) (Background.tex [3] [4] [5]) (RelatedWorks.tex [6]) [7] (Methodology.tex [8]
-Underfull \hbox (badness 1057) in paragraph at lines 33--33
-[]|\T1/cmr/bx/n/9 What it con-tains
- []
+{C:/Users/MIKE/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Introduction.tex [2]) (Background.tex [3] [4] [5]) (RelatedWorks.tex [6]) [7] (Methodology.tex
 
-
-Underfull \hbox (badness 2035) in paragraph at lines 33--33
-[]|\T1/cmr/m/n/9 Student pro-file and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 out-come la-bels:
+[8]
+Underfull \hbox (badness 6125) in paragraph at lines 33--33
+\T1/cmr/m/n/9 la-bels: \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 , de-mo-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 , de-mo-
+\T1/cmr/m/n/9 graph-ics (gen-der, re-gion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 graph-ics (gen-der,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 re-gion, ed-u-ca-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 tion, dis-abil-ity),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 socio-economic and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 age bands, prior
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 at-tempts, stud-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 ied cred-its, and
+Underfull \hbox (badness 5446) in paragraph at lines 33--33
+\T1/cmr/m/n/9 economic and age bands,
  []
 
 
@@ -887,112 +849,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--33
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 meta-data:
+\T1/cmr/m/n/9 meta-data: \T1/cmtt/m/n/9 code_module\T1/cmr/m/n/9 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmtt/m/n/9 code_module\T1/cmr/m/n/9 ,
+\T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 , and
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 ,
+[]|\T1/cmr/m/n/9 Enrollment time-line
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-[]|\T1/cmr/m/n/9 Enrollment time-
+\T1/cmr/m/n/9 per stu-dent and pre-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 line per stu-dent
+\T1/cmr/m/n/9 sen-ta-tion: \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 and pre-sen-ta-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 tion: \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmtt/m/n/9 date_registration\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--33
-\T1/cmr/m/n/9 and
- []
-
-
-Overfull \hbox (6.03525pt too wide) in paragraph at lines 33--33
-\T1/cmtt/m/n/9 date_unregistration\T1/cmr/m/n/9 .| 
+\T1/cmtt/m/n/9 date_registration\T1/cmr/m/n/9 , and
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 48--48
-[]|\T1/cmr/m/n/9 Assessment struc-
+\T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 48--48
+\T1/cmtt/m/n/9 id_assessment\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 assessment_type\T1/cmr/m/n/9 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmr/m/n/9 ture: \T1/cmtt/m/n/9 code_module\T1/cmr/m/n/9 ,
+\T1/cmtt/m/n/9 id_assessment\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 is_banked\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmtt/m/n/9 id_assessment\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmtt/m/n/9 assessment_type\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 date\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-[]|\T1/cmr/m/n/9 Student per-for-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-\T1/cmr/m/n/9 mance: \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[9]
 Underfull \hbox (badness 10000) in paragraph at lines 63--63
 []|\T1/cmr/m/n/9 Clickstream data: \T1/cmtt/m/n/9 code_module\T1/cmr/m/n/9 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 63--63
-\T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 id_student\T1/cmr/m/n/9 ,
+[]|\T1/cmr/m/n/9 VLE re-source meta-data: \T1/cmtt/m/n/9 id_site\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 6641) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
 \T1/cmtt/m/n/9 code_module\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 code_presentation\T1/cmr/m/n/9 ,
+ []
+
+
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+\T1/cmr/m/n/10 per-for-mance (\T1/cmtt/m/n/10 studentAssessment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+\T1/cmr/m/n/10 and \T1/cmtt/m/n/10 assessments\T1/cmr/m/n/10 ), and be-hav-ior
  []
 
 
@@ -1035,7 +959,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--76
 \T1/cmr/m/n/10 the student-module-presentation
  []
 
-[10]
+
 Underfull \hbox (badness 10000) in paragraph at lines 76--77
 \T1/cmr/m/n/10 student-module-presentation and
  []
@@ -1045,107 +969,104 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--77
 \T1/cmr/m/n/10 tain one behavior-feature row
  []
 
-<figures/PP_pipeline_LBL1_input_tables.png, id=189, 786.94pt x 173.64874pt>
+[10]
+<figures/PP_pipeline_LBL1_input_tables.png, id=190, 786.94pt x 173.64874pt>
 File: figures/PP_pipeline_LBL1_input_tables.png Graphic file (type png)
 <use figures/PP_pipeline_LBL1_input_tables.png>
-Package pdftex.def Info: figures/PP_pipeline_LBL1_input_tables.png  used on input line 86.
-(pdftex.def)             Requested size: 312.40906pt x 68.93628pt.
-<figures/PP_pipeline_LBL2_feature_preparation.png, id=190, 786.94pt x 212.795pt>
+Package pdftex.def Info: figures/PP_pipeline_LBL1_input_tables.png  used on input line 87.
+(pdftex.def)             Requested size: 277.69987pt x 61.2761pt.
+<figures/PP_pipeline_LBL2_feature_preparation.png, id=191, 786.94pt x 212.795pt>
 File: figures/PP_pipeline_LBL2_feature_preparation.png Graphic file (type png)
 <use figures/PP_pipeline_LBL2_feature_preparation.png>
-Package pdftex.def Info: figures/PP_pipeline_LBL2_feature_preparation.png  used on input line 92.
-(pdftex.def)             Requested size: 312.40906pt x 84.47682pt.
-<figures/PP_pipeline_LBL3_prepared_feature_sets.png, id=191, 786.94pt x 205.76875pt>
+Package pdftex.def Info: figures/PP_pipeline_LBL2_feature_preparation.png  used on input line 93.
+(pdftex.def)             Requested size: 277.69987pt x 75.08978pt.
+<figures/PP_pipeline_LBL3_prepared_feature_sets.png, id=192, 786.94pt x 205.76875pt>
 File: figures/PP_pipeline_LBL3_prepared_feature_sets.png Graphic file (type png)
 <use figures/PP_pipeline_LBL3_prepared_feature_sets.png>
-Package pdftex.def Info: figures/PP_pipeline_LBL3_prepared_feature_sets.png  used on input line 98.
-(pdftex.def)             Requested size: 312.40906pt x 81.6875pt.
-<figures/PP_pipeline_LBL4_final_dataset.png, id=192, 786.94pt x 313.17pt>
+Package pdftex.def Info: figures/PP_pipeline_LBL3_prepared_feature_sets.png  used on input line 99.
+(pdftex.def)             Requested size: 277.69987pt x 72.61041pt.
+<figures/PP_pipeline_LBL4_final_dataset.png, id=193, 786.94pt x 313.17pt>
 File: figures/PP_pipeline_LBL4_final_dataset.png Graphic file (type png)
 <use figures/PP_pipeline_LBL4_final_dataset.png>
-Package pdftex.def Info: figures/PP_pipeline_LBL4_final_dataset.png  used on input line 104.
-(pdftex.def)             Requested size: 312.40906pt x 124.32439pt.
+Package pdftex.def Info: figures/PP_pipeline_LBL4_final_dataset.png  used on input line 105.
+(pdftex.def)             Requested size: 277.69987pt x 110.5095pt.
 
-
-[11 <./figures/PP_pipeline_LBL1_input_tables.png>]
-
-[12 <./figures/PP_pipeline_LBL2_feature_preparation.png> <./figures/PP_pipeline_LBL3_prepared_feature_sets.png> <./figures/PP_pipeline_LBL4_final_dataset.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
  []\T1/cmr/bx/n/10 Traditional Ma-chine Learn-ing
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+[11 <./figures/PP_pipeline_LBL1_input_tables.png> <./figures/PP_pipeline_LBL2_feature_preparation.png> <./figures/PP_pipeline_LBL3_prepared_feature_sets.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 []\T1/cmr/m/n/10 Regarding im-ple-men-ta-tion, all
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 n_estimators=300\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 min_samples_split=5\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 min_samples_leaf=2\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 max_features='sqrt'\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 splitter='best'\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 min_samples_split=20\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 min_samples_leaf=4\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 max_features=None\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 2393) in paragraph at lines 147--147
+Underfull \hbox (badness 2393) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 StandardScaler() \T1/cmr/m/n/9 + \T1/cmtt/m/n/9 SVC(C=0.7847599703514611,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 class_weight='balanced', kernel='rbf',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 subsample=1.0\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 n_estimators=100\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 min_samples_split=2\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 min_samples_leaf=4\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 max_features=None\T1/cmr/m/n/9 , \T1/cmtt/m/n/9 max_depth=5\T1/cmr/m/n/9 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 StandardScaler() \T1/cmr/m/n/9 + \T1/cmtt/m/n/9 KNeighborsClassifier
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 (n_neighbors=7, weights='uniform', p=1,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 ELMClassifier(n_neurons=1000, alpha=0.0001,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 []|\T1/cmtt/m/n/9 MLPClassifier(hidden_layer_sizes=(32,),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
 \T1/cmtt/m/n/9 activation='tanh', alpha=0.1, solver='lbfgs',
  []
 
@@ -1154,11 +1075,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[13]
-<code/plots/random_search_cv_py.png, id=215, 867.24pt x 505.89pt>
+[12 <./figures/PP_pipeline_LBL4_final_dataset.png>]
+<code/plots/random_search_cv_py.png, id=211, 867.24pt x 505.89pt>
 File: code/plots/random_search_cv_py.png Graphic file (type png)
 <use code/plots/random_search_cv_py.png>
-Package pdftex.def Info: code/plots/random_search_cv_py.png  used on input line 154.
+Package pdftex.def Info: code/plots/random_search_cv_py.png  used on input line 155.
 (pdftex.def)             Requested size: 315.88368pt x 184.2662pt.
  (C:\Users\MIKE\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/05/25 1.10b listings language file
@@ -1167,30 +1088,30 @@ Underfull \vbox (badness 3354) has occurred while \output is active []
 
 
 
-[14 <./code/plots/random_search_cv_py.png>]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 158.
+[13 <./code/plots/random_search_cv_py.png>]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 159.
 )
 
-[15] (Results.tex
-<code/plots/combined_tradml_llm_performance.png, id=270, 939.51pt x 542.025pt>
+[14] (Results.tex
+<code/plots/combined_tradml_llm_performance.png, id=268, 939.51pt x 542.025pt>
 File: code/plots/combined_tradml_llm_performance.png Graphic file (type png)
 <use code/plots/combined_tradml_llm_performance.png>
 Package pdftex.def Info: code/plots/combined_tradml_llm_performance.png  used on input line 35.
 (pdftex.def)             Requested size: 347.12354pt x 200.26491pt.
-<code/plots/model_performance_py.png, id=271, 860.013pt x 425.1885pt>
+<code/plots/model_performance_py.png, id=269, 860.013pt x 425.1885pt>
 File: code/plots/model_performance_py.png Graphic file (type png)
 <use code/plots/model_performance_py.png>
 Package pdftex.def Info: code/plots/model_performance_py.png  used on input line 42.
 (pdftex.def)             Requested size: 347.12354pt x 171.61649pt.
 
 
-[16 <./code/plots/combined_tradml_llm_performance.png>]
-<code/plots/qwen_metric_technique_comparison.png, id=281, 505.89pt x 361.35pt>
+[15 <./code/plots/combined_tradml_llm_performance.png>]
+<code/plots/qwen_metric_technique_comparison.png, id=279, 505.89pt x 361.35pt>
 File: code/plots/qwen_metric_technique_comparison.png Graphic file (type png)
 <use code/plots/qwen_metric_technique_comparison.png>
 Package pdftex.def Info: code/plots/qwen_metric_technique_comparison.png  used on input line 68.
 (pdftex.def)             Requested size: 173.56177pt x 123.97115pt.
-<code/plots/llama_metric_technique_comparison.png, id=282, 505.89pt x 361.35pt>
+<code/plots/llama_metric_technique_comparison.png, id=280, 505.89pt x 361.35pt>
 File: code/plots/llama_metric_technique_comparison.png Graphic file (type png)
 <use code/plots/llama_metric_technique_comparison.png>
 Package pdftex.def Info: code/plots/llama_metric_technique_comparison.png  used on input line 71.
@@ -1210,13 +1131,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--73
 []\T1/cmr/m/n/10 Fig.8: |Prompting-technique com-
  []
 
-[17 <./code/plots/model_performance_py.png>]) (Discussion.tex [18 <./code/plots/qwen_metric_technique_comparison.png> <./code/plots/llama_metric_technique_comparison.png>]) (Conclusion.tex)
+[16 <./code/plots/model_performance_py.png>]) (Discussion.tex [17 <./code/plots/qwen_metric_technique_comparison.png> <./code/plots/llama_metric_technique_comparison.png>]) (Conclusion.tex)
+
+[18]
 
 [19]
 
-[20]
-
-[21] (main.aux)
+[20] (main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
@@ -1228,17 +1149,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23112 strings out of 473899
- 407598 string characters out of 5726973
+ 23129 strings out of 473899
+ 407774 string characters out of 5726973
  2325960 words of memory out of 5000000
- 45563 multiletter control sequences out of 15000+600000
- 569458 words of font info for 59 fonts, out of 8000000 for 9000
+ 45572 multiletter control sequences out of 15000+600000
+ 572215 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,81p,1829b,1825s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on main.pdf (21 pages, 803427 bytes).
+ <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\MIKE\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/MIKE/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on main.pdf (20 pages, 823741 bytes).
 PDF statistics:
- 899 PDF objects out of 1000 (max. 8388607)
- 142 named destinations out of 1000 (max. 500000)
+ 900 PDF objects out of 1000 (max. 8388607)
+ 141 named destinations out of 1000 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

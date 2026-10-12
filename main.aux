@@ -47,6 +47,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Background}{3}{section.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Traditional Machine Learning Models}{3}{subsection.1.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Random Forest}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Support Vector Machine}{3}{section*.3}\protected@file@percent }
 \abx@aux@cite{0}{Chen2024}
 \abx@aux@segm{0}{0}{Chen2024}
 \abx@aux@cite{0}{Chen2024}
@@ -65,10 +66,6 @@
 \abx@aux@segm{0}{0}{Nigsch2006}
 \abx@aux@cite{0}{Cover1967}
 \abx@aux@segm{0}{0}{Cover1967}
-\@writefile{toc}{\contentsline {subsubsection}{Support Vector Machine}{4}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Gradient Boosting}{4}{section*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Decision Tree}{4}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{K-Nearest Neighbors}{4}{section*.6}\protected@file@percent }
 \abx@aux@cite{0}{Huang2006}
 \abx@aux@segm{0}{0}{Huang2006}
 \abx@aux@cite{0}{Huang2006}
@@ -77,6 +74,9 @@
 \abx@aux@segm{0}{0}{Huang2006}
 \abx@aux@cite{0}{Huang2012}
 \abx@aux@segm{0}{0}{Huang2012}
+\@writefile{toc}{\contentsline {subsubsection}{Gradient Boosting}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Decision Tree}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{$k$-Nearest Neighbors}{4}{section*.6}\protected@file@percent }
 \abx@aux@cite{0}{Rosenblatt1958}
 \abx@aux@segm{0}{0}{Rosenblatt1958}
 \abx@aux@cite{0}{Rosenblatt1958}
@@ -118,14 +118,14 @@
 \abx@aux@segm{0}{0}{Delgado2014}
 \abx@aux@cite{0}{Tong2025}
 \abx@aux@segm{0}{0}{Tong2025}
+\abx@aux@cite{0}{Jimenez-Macias2025}
+\abx@aux@segm{0}{0}{Jimenez-Macias2025}
+\abx@aux@cite{0}{Jimenez-Macias2025}
+\abx@aux@segm{0}{0}{Jimenez-Macias2025}
 \@writefile{toc}{\contentsline {subsubsection}{Qwen-2.5-3B}{6}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{LLaMA-3-8B}{6}{section*.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{6}{section.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Machine Learning Models as Classifiers in Educational Context}{6}{subsection.1.3.1}\protected@file@percent }
-\abx@aux@cite{0}{Jimenez-Macias2025}
-\abx@aux@segm{0}{0}{Jimenez-Macias2025}
-\abx@aux@cite{0}{Jimenez-Macias2025}
-\abx@aux@segm{0}{0}{Jimenez-Macias2025}
 \abx@aux@cite{0}{Bujang2021}
 \abx@aux@segm{0}{0}{Bujang2021}
 \abx@aux@cite{0}{Tong2025}
@@ -157,49 +157,49 @@
 \abx@aux@cite{0}{Elreedy2019}
 \abx@aux@segm{0}{0}{Elreedy2019}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data aggregation}{7}{subsection.1.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Performance metrics}{7}{subsection.1.3.3}\protected@file@percent }
 \abx@aux@cite{0}{Kuzilek2017}
 \abx@aux@segm{0}{0}{Kuzilek2017}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Performance metrics}{8}{subsection.1.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Methodology}{8}{section.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset and Preprocessing}{8}{subsection.1.4.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces OULAD: Student and Course Demographics}}{9}{table.caption.11}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:demographics}{{1}{9}{OULAD: Student and Course Demographics}{table.caption.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces OULAD: Assessment Data}}{10}{table.caption.12}\protected@file@percent }
-\newlabel{tab:assessments}{{2}{10}{OULAD: Assessment Data}{table.caption.12}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces OULAD: Virtual Learning Environment Interactions}}{10}{table.caption.13}\protected@file@percent }
-\newlabel{tab:vle}{{3}{10}{OULAD: Virtual Learning Environment Interactions}{table.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Preprocessing pipeline (Stage 1): input tables.}}{11}{figure.caption.14}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Preprocessing pipeline (Stage 2): feature preparation.}}{12}{figure.caption.15}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Preprocessing pipeline (Stage 3): prepared feature sets.}}{12}{figure.caption.16}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preprocessing pipeline (Stage 4): final dataset construction.}}{12}{figure.caption.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces OULAD: Assessment Data}}{9}{table.caption.12}\protected@file@percent }
+\newlabel{tab:assessments}{{2}{9}{OULAD: Assessment Data}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces OULAD: Virtual Learning Environment Interactions}}{9}{table.caption.13}\protected@file@percent }
+\newlabel{tab:vle}{{3}{9}{OULAD: Virtual Learning Environment Interactions}{table.caption.13}{}}
 \abx@aux@cite{0}{Delgado2014}
 \abx@aux@segm{0}{0}{Delgado2014}
 \abx@aux@cite{0}{Alhakbani2022}
 \abx@aux@segm{0}{0}{Alhakbani2022}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Modeling}{13}{subsection.1.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Traditional Machine Learning Models}{13}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Large Language Models}{13}{section*.19}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperparameters used for each traditional machine learning model.}}{14}{table.caption.20}\protected@file@percent }
-\newlabel{tab:model_hyperparameters}{{4}{14}{Hyperparameters used for each traditional machine learning model}{table.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-validation results for traditional machine learning models.}}{14}{figure.caption.21}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}{\ignorespaces Function to build LLMs prompt}}{15}{lstlisting.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{16}{section.1.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Summary of traditional ML and LLM performance on the test set (Macro F1 and Balanced Accuracy).}}{16}{table.caption.22}\protected@file@percent }
-\newlabel{tab:results-summary}{{5}{16}{Summary of traditional ML and LLM performance on the test set (Macro F1 and Balanced Accuracy)}{table.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy.}}{16}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:combined-performance}{{6}{16}{Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy.}}{17}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:tradml-performance}{{7}{17}{Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Traditional Predictive Models}{17}{subsection.1.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Large Language Models}{18}{subsection.1.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Prompting-technique comparison for Qwen-2.5-3B (left) and LLaMA-3-8B (right), using Macro F1 and Balanced Accuracy.}}{18}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:llm-prompting}{{8}{18}{Prompting-technique comparison for Qwen-2.5-3B (left) and LLaMA-3-8B (right), using Macro F1 and Balanced Accuracy}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{18}{section.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Interpretation}{18}{subsection.1.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Threats to Validity}{19}{subsection.1.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{19}{section.1.7}\protected@file@percent }
-\abx@aux@read@bbl@mdfivesum{A1FB63E22FC17D36F5274BA8C98C0B7A}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Preprocessing pipeline (Stage 1): input tables.}}{11}{figure.caption.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Preprocessing pipeline (Stage 2): feature preparation.}}{11}{figure.caption.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Preprocessing pipeline (Stage 3): prepared feature sets.}}{11}{figure.caption.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Modeling}{11}{subsection.1.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Traditional Machine Learning Models}{11}{section*.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preprocessing pipeline (Stage 4): final dataset construction.}}{12}{figure.caption.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Large Language Models}{12}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperparameters used for each traditional machine learning model.}}{13}{table.caption.20}\protected@file@percent }
+\newlabel{tab:model_hyperparameters}{{4}{13}{Hyperparameters used for each traditional machine learning model}{table.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-validation results for traditional machine learning models.}}{13}{figure.caption.21}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}{\ignorespaces Function to build LLMs prompt}}{14}{lstlisting.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{15}{section.1.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Summary of traditional ML and LLM performance on the test set (Macro F1 and Balanced Accuracy).}}{15}{table.caption.22}\protected@file@percent }
+\newlabel{tab:results-summary}{{5}{15}{Summary of traditional ML and LLM performance on the test set (Macro F1 and Balanced Accuracy)}{table.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy.}}{15}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:combined-performance}{{6}{15}{Combined performance comparison of traditional machine learning models and large language models using F1 and Balanced Accuracy}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy.}}{16}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:tradml-performance}{{7}{16}{Test-set performance comparison of traditional predictive models using Macro F1 and Balanced Accuracy}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Traditional Predictive Models}{16}{subsection.1.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Large Language Models}{17}{subsection.1.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Prompting-technique comparison for Qwen-2.5-3B (left) and LLaMA-3-8B (right), using Macro F1 and Balanced Accuracy.}}{17}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:llm-prompting}{{8}{17}{Prompting-technique comparison for Qwen-2.5-3B (left) and LLaMA-3-8B (right), using Macro F1 and Balanced Accuracy}{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{17}{section.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Interpretation}{17}{subsection.1.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Threats to Validity}{18}{subsection.1.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{18}{section.1.7}\protected@file@percent }
+\abx@aux@read@bbl@mdfivesum{4B2884918EA1CC97D9B7012555D67AA8}
 \abx@aux@defaultrefcontext{0}{Alhakbani2022}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{Alias2024}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{Jaskowiak2011}{nty/global//global/global/global}
@@ -233,4 +233,4 @@
 \abx@aux@defaultrefcontext{0}{Yang2017}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{Zaky2023}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{Zhan2025}{nty/global//global/global/global}
-\gdef \@abspage@last{21}
+\gdef \@abspage@last{20}
